@@ -34,6 +34,14 @@ main {
 button {
   width: 40px;
   height: 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: teal;
+  color: #fff;
+}
+
+.operator {
+  background-color: turquoise;
 }
 
 row {
