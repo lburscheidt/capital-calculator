@@ -43,6 +43,8 @@ let plusBtn = document.getElementById('+');
 let minusBtn = document.getElementById('-');
 let multiplyBtn = document.getElementById('*');
 let divideBtn = document.getElementById('/');
+let periodBtn = document.getElementById('.');
+
 let equalsBtn = document.getElementById('=');
 
 let clearBtn = document.getElementById('C');
@@ -96,6 +98,9 @@ equalsBtn.addEventListener('click', function () {
   populateDisplay(' = ');
 });
 
+periodBtn.addEventListener('click', function () {
+  populateDisplay('.');
+});
 
 clearBtn.addEventListener('click', clearDisplay);
 
