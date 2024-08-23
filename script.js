@@ -47,21 +47,58 @@ let equalsBtn = document.getElementById('=');
 
 let clearBtn = document.getElementById('C');
 
-oneBtn.addEventListener('click', populateDisplay);
-twoBtn.addEventListener('click', populateDisplay);
-threeBtn.addEventListener('click', populateDisplay);
-fourBtn.addEventListener('click', populateDisplay);
-fiveBtn.addEventListener('click', populateDisplay);
-sixBtn.addEventListener('click', populateDisplay);
-sevenBtn.addEventListener('click', populateDisplay);
-eightBtn.addEventListener('click', populateDisplay);
-nineBtn.addEventListener('click', populateDisplay);
-zeroBtn.addEventListener('click', populateDisplay);
+let display = document.getElementById('display');
 
-plusBtn.addEventListener('click', populateDisplay);
-minusBtn.addEventListener('click', populateDisplay);
-multiplyBtn.addEventListener('click', populateDisplay);
-divideBtn.addEventListener('click', populateDisplay);
-equalsBtn.addEventListener('click', populateDisplay);
+oneBtn.addEventListener('click', function () {
+  populateDisplay('1');
+});
+twoBtn.addEventListener('click', function () {
+  populateDisplay('2');
+});
+threeBtn.addEventListener('click', function () {
+  populateDisplay('3');
+});
+fourBtn.addEventListener('click', function () {
+  populateDisplay('4');
+});
+fiveBtn.addEventListener('click', function () {
+  populateDisplay('5');
+});
+sixBtn.addEventListener('click', function () {
+  populateDisplay('6');
+});
+sevenBtn.addEventListener('click', function () {
+  populateDisplay('7');
+});
+eightBtn.addEventListener('click', function () {
+  populateDisplay('8');
+});
+nineBtn.addEventListener('click', function () {
+  populateDisplay('9');
+});
+zeroBtn.addEventListener('click', function () {
+  populateDisplay('0');
+});
 
-clearBtn.addEventListener('click', populateDisplay);
+plusBtn.addEventListener('click', function () {
+  populateDisplay('+');
+});
+minusBtn.addEventListener('click', function () {
+  populateDisplay(' - ');
+});
+multiplyBtn.addEventListener('click', function () {
+  populateDisplay(' * ');
+});
+divideBtn.addEventListener('click', function () {
+  populateDisplay(' / ');
+});
+equalsBtn.addEventListener('click', function () {
+  populateDisplay(' = ');
+});
+
+
+clearBtn.addEventListener('click', clearDisplay);
+
+function populateDisplay(str) {
+  display.textContent += str;
+}
