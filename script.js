@@ -3,16 +3,16 @@ let num2;
 let operator;
 
 function add(num1, num2) {
-  return num1 + num2;
+  return (display.textContent = num1 + num2);
 }
 function subtract(num1, num2) {
-  return num1 - num2;
+  return (display.textContent = num1 - num2);
 }
 function multiply(num1, num2) {
-  return num1 * num2;
+  return (display.textContent = num1 * num2);
 }
 function divide(num1, num2) {
-  return num1 / num2;
+  return (display.textContent = num1 / num2);
 }
 
 function operate(num1, num2, operator) {
@@ -84,7 +84,7 @@ zeroBtn.addEventListener('click', function () {
 });
 
 plusBtn.addEventListener('click', function () {
-  populateDisplay('+');
+  populateDisplay(' + ');
 });
 minusBtn.addEventListener('click', function () {
   populateDisplay(' - ');
@@ -97,6 +97,7 @@ divideBtn.addEventListener('click', function () {
 });
 equalsBtn.addEventListener('click', function () {
   populateDisplay(' = ');
+  splitString(display.textContent);
 });
 
 periodBtn.addEventListener('click', function () {
@@ -111,4 +112,28 @@ function populateDisplay(str) {
 
 function clearDisplay() {
   display.textContent = '';
+}
+
+function operate(num1, num2, operator) {
+  if (operator == '+') {
+    let result = add(num1, num2);
+  } else if (operator == '-') {
+    let result = subtract(num1, num2);
+  } else if (operator == '*') {
+    let result = multiply(num1, num2);
+  } else if (operator == '/') {
+    let result = divide(num1, num2);
+  }
+}
+
+function splitString(str) {
+  let characters = str.split(' ');
+  console.log(characters);
+  num1 = Number(characters[0]);
+  num2 = Number(characters[2]);
+  operator = characters[1];
+  console.log(num1);
+  console.log(num2);
+  console.log(operator);
+  operate(num1, num2, operator);
 }
