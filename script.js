@@ -44,6 +44,7 @@ let minusBtn = document.getElementById('-');
 let multiplyBtn = document.getElementById('*');
 let divideBtn = document.getElementById('/');
 let periodBtn = document.getElementById('.');
+let percentBtn = document.getElementById('%');
 
 let equalsBtn = document.getElementById('=');
 
@@ -106,4 +107,8 @@ clearBtn.addEventListener('click', clearDisplay);
 
 function populateDisplay(str) {
   display.textContent += str;
+}
+
+function clearDisplay() {
+  display.textContent = '';
 }
