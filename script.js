@@ -12,7 +12,26 @@ function multiply(num1, num2) {
   return (display.textContent = num1 * num2);
 }
 function divide(num1, num2) {
-  return (display.textContent = num1 / num2);
+  if (num2 !== 0) {
+    return (display.textContent = num1 / num2);
+  } else {
+    return (display.innerHTML = '<i class="fa-solid fa-skull"></i>');
+  }
+}
+function disableOperatorBtns() {
+  plusBtn.disabled = true;
+  minusBtn.disabled = true;
+  divideBtn.disabled = true;
+  multiplyBtn.disabled = true;
+  equalsBtn.disabled = true;
+}
+
+function enableOperatorButtons() {
+  minusBtn.disabled = false;
+  divideBtn.disabled = false;
+  plusBtn.disabled = false;
+  multiplyBtn.disabled = false;
+  equalsBtn.disabled = false;
 }
 
 function operate(num1, num2, operator) {
@@ -53,50 +72,65 @@ let clearBtn = document.getElementById('C');
 let display = document.getElementById('display');
 
 oneBtn.addEventListener('click', function () {
+  enableOperatorButtons();
   populateDisplay('1');
 });
 twoBtn.addEventListener('click', function () {
+  enableOperatorButtons();
   populateDisplay('2');
 });
 threeBtn.addEventListener('click', function () {
+  enableOperatorButtons();
   populateDisplay('3');
 });
 fourBtn.addEventListener('click', function () {
+  enableOperatorButtons();
   populateDisplay('4');
 });
 fiveBtn.addEventListener('click', function () {
+  enableOperatorButtons();
   populateDisplay('5');
 });
 sixBtn.addEventListener('click', function () {
+  enableOperatorButtons();
   populateDisplay('6');
 });
 sevenBtn.addEventListener('click', function () {
+  enableOperatorButtons();
   populateDisplay('7');
 });
 eightBtn.addEventListener('click', function () {
+  enableOperatorButtons();
   populateDisplay('8');
 });
 nineBtn.addEventListener('click', function () {
+  enableOperatorButtons();
   populateDisplay('9');
 });
 zeroBtn.addEventListener('click', function () {
+  enableOperatorButtons();
   populateDisplay('0');
 });
 
 plusBtn.addEventListener('click', function () {
   populateDisplay(' + ');
+  disableOperatorBtns();
 });
 minusBtn.addEventListener('click', function () {
   populateDisplay(' - ');
+  disableOperatorBtns();
 });
 multiplyBtn.addEventListener('click', function () {
   populateDisplay(' * ');
+  disableOperatorBtns();
 });
 divideBtn.addEventListener('click', function () {
   populateDisplay(' / ');
+  disableOperatorBtns();
 });
 equalsBtn.addEventListener('click', function () {
   populateDisplay(' = ');
+  disableOperatorBtns();
   splitString(display.textContent);
 });
 

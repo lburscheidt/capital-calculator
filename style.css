@@ -40,6 +40,10 @@ button {
   color: #fff;
 }
 
+button:disabled {
+  background-color: yellowgreen;
+}
+
 .operator {
   background-color: turquoise;
 }
