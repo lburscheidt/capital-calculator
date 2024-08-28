@@ -1,6 +1,7 @@
 let num1;
 let num2;
 let operator;
+disableOperatorBtns();
 
 function add(num1, num2) {
   return (display.textContent = num1 + num2);
@@ -46,7 +47,7 @@ let sixBtn = document.getElementById('6');
 let sevenBtn = document.getElementById('7');
 let eightBtn = document.getElementById('8');
 let nineBtn = document.getElementById('9');
-let zeroBtn = document.getElementById('0');
+let zeroBtn = document.getElementById('zero');
 
 /*operators*/
 let plusBtn = document.getElementById('+');
@@ -57,8 +58,10 @@ let periodBtn = document.getElementById('.');
 let percentBtn = document.getElementById('%');
 let equalsBtn = document.getElementById('=');
 
-/*clear */
+/*clear & backspace*/
 let clearBtn = document.getElementById('C');
+
+let backspaceBtn = document.getElementById('Del');
 
 /*event listeners*/
 
@@ -118,19 +121,27 @@ multiplyBtn.addEventListener('click', function () {
 divideBtn.addEventListener('click', function () {
   populateDisplay(' / ');
   disableOperatorBtns();
-
 });
+
 equalsBtn.addEventListener('click', function () {
   populateDisplay(' = ');
   disableOperatorBtns();
   splitString(display.textContent);
-});
+}); 
 
 periodBtn.addEventListener('click', function () {
   populateDisplay('.');
 });
 
 clearBtn.addEventListener('click', clearDisplay);
+
+backspaceBtn.addEventListener('click', backspaceDelete);
+
+function backspaceDelete(){
+  text = display.innerText.split('');
+text.pop();
+display.innerText =text.toString();
+};
 
 function populateDisplay(str) {
   display.textContent += str;

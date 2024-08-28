@@ -54,6 +54,12 @@ button .operator {
   background-color: turquoise;
 }
 
+#Del, #zero  {
+  width: 170px;
+  height: 80px; 
+}
+
+
 row {
   display: flex;
   gap: 10px;
