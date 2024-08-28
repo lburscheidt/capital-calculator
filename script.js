@@ -15,24 +15,10 @@ function divide(num1, num2) {
   if (num2 !== 0) {
     return (display.textContent = num1 / num2);
   } else {
-    return (display.innerHTML = '<i class="fa-solid fa-skull"></i>');
+    return (display.innerHTML = '<i class="fa-solid fa-skull"></i><i class="fa-solid fa-skull"></i><i class="fa-solid fa-skull"></i>');
   }
 }
-function disableOperatorBtns() {
-  plusBtn.disabled = true;
-  minusBtn.disabled = true;
-  divideBtn.disabled = true;
-  multiplyBtn.disabled = true;
-  equalsBtn.disabled = true;
-}
 
-function enableOperatorButtons() {
-  minusBtn.disabled = false;
-  divideBtn.disabled = false;
-  plusBtn.disabled = false;
-  multiplyBtn.disabled = false;
-  equalsBtn.disabled = false;
-}
 
 function operate(num1, num2, operator) {
   if (operator == '+') {
@@ -47,6 +33,10 @@ function operate(num1, num2, operator) {
 }
 
 /*populate display*/
+let display = document.getElementById('display');
+
+/*numbers*/
+
 let oneBtn = document.getElementById('1');
 let twoBtn = document.getElementById('2');
 let threeBtn = document.getElementById('3');
@@ -58,57 +48,58 @@ let eightBtn = document.getElementById('8');
 let nineBtn = document.getElementById('9');
 let zeroBtn = document.getElementById('0');
 
+/*operators*/
 let plusBtn = document.getElementById('+');
 let minusBtn = document.getElementById('-');
 let multiplyBtn = document.getElementById('*');
 let divideBtn = document.getElementById('/');
 let periodBtn = document.getElementById('.');
 let percentBtn = document.getElementById('%');
-
 let equalsBtn = document.getElementById('=');
 
+/*clear */
 let clearBtn = document.getElementById('C');
 
-let display = document.getElementById('display');
+/*event listeners*/
 
 oneBtn.addEventListener('click', function () {
-  enableOperatorButtons();
+  enableOperatorBtns();
   populateDisplay('1');
 });
 twoBtn.addEventListener('click', function () {
-  enableOperatorButtons();
+  enableOperatorBtns();
   populateDisplay('2');
 });
 threeBtn.addEventListener('click', function () {
-  enableOperatorButtons();
+  enableOperatorBtns();
   populateDisplay('3');
 });
 fourBtn.addEventListener('click', function () {
-  enableOperatorButtons();
+  enableOperatorBtns();
   populateDisplay('4');
 });
 fiveBtn.addEventListener('click', function () {
-  enableOperatorButtons();
+  enableOperatorBtns();
   populateDisplay('5');
 });
 sixBtn.addEventListener('click', function () {
-  enableOperatorButtons();
+  enableOperatorBtns();
   populateDisplay('6');
 });
 sevenBtn.addEventListener('click', function () {
-  enableOperatorButtons();
+  enableOperatorBtns();
   populateDisplay('7');
 });
 eightBtn.addEventListener('click', function () {
-  enableOperatorButtons();
+  enableOperatorBtns();
   populateDisplay('8');
 });
 nineBtn.addEventListener('click', function () {
-  enableOperatorButtons();
+  enableOperatorBtns();
   populateDisplay('9');
 });
 zeroBtn.addEventListener('click', function () {
-  enableOperatorButtons();
+  enableOperatorBtns();
   populateDisplay('0');
 });
 
@@ -127,6 +118,7 @@ multiplyBtn.addEventListener('click', function () {
 divideBtn.addEventListener('click', function () {
   populateDisplay(' / ');
   disableOperatorBtns();
+
 });
 equalsBtn.addEventListener('click', function () {
   populateDisplay(' = ');
@@ -147,6 +139,19 @@ function populateDisplay(str) {
 function clearDisplay() {
   display.textContent = '';
 }
+
+function disableOperatorBtns(){
+  document.querySelectorAll('button.operator').forEach(elem => {
+    elem.disabled = true;
+});
+}
+
+function enableOperatorBtns(){
+    document.querySelectorAll('button.operator').forEach(elem => {
+    elem.disabled = false;
+});
+}
+
 
 function operate(num1, num2, operator) {
   if (operator == '+') {
