@@ -1,7 +1,9 @@
 let num1;
 let num2;
 let operator;
-disableOperatorBtns();
+let display = document.getElementById('display');
+
+let operation = display.innerText;
 
 function add(num1, num2) {
   return (display.textContent = num1 + num2);
@@ -34,7 +36,7 @@ function operate(num1, num2, operator) {
 }
 
 /*populate display*/
-let display = document.getElementById('display');
+
 
 /*numbers*/
 
@@ -62,6 +64,12 @@ let equalsBtn = document.getElementById('=');
 let clearBtn = document.getElementById('C');
 
 let backspaceBtn = document.getElementById('Del');
+
+
+if (operation.includes(".")){periodBtn.disabled = true;}
+else{periodBtn.disabled = false;}
+
+disableOperatorBtns();
 
 /*event listeners*/
 
@@ -131,6 +139,7 @@ equalsBtn.addEventListener('click', function () {
 
 periodBtn.addEventListener('click', function () {
   populateDisplay('.');
+disablePeriod();
 });
 
 clearBtn.addEventListener('click', clearDisplay);
@@ -138,9 +147,10 @@ clearBtn.addEventListener('click', clearDisplay);
 backspaceBtn.addEventListener('click', backspaceDelete);
 
 function backspaceDelete(){
-  text = display.innerText.split('');
-text.pop();
-display.innerText =text.toString();
+  let text = display.innerText.replace(" ","").slice(0, -1);
+console.log(text);
+display.innerText = text;
+if (plusBtn.disabled = true) {enableOperatorBtns()};
 };
 
 function populateDisplay(str) {
