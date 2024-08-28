@@ -41,16 +41,20 @@ button {
   height: 80px;
   border: none;
   border-radius: 5px;
-  background-color: teal;
   color: #fff;
   text-align: center;
+}
+
+
+.number{
+background-color: teal;
 }
 
 button:disabled {
   background-color: yellowgreen;
 }
 
-button .operator {
+.operator, .del, .period{
   background-color: turquoise;
 }
 

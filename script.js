@@ -3,7 +3,7 @@ let num2;
 let operator;
 let display = document.getElementById('display');
 
-let operation = display.innerText;
+let operation = display.textContent;
 
 function add(num1, num2) {
   return (display.textContent = num1 + num2);
@@ -57,7 +57,6 @@ let minusBtn = document.getElementById('-');
 let multiplyBtn = document.getElementById('*');
 let divideBtn = document.getElementById('/');
 let periodBtn = document.getElementById('.');
-let percentBtn = document.getElementById('%');
 let equalsBtn = document.getElementById('=');
 
 /*clear & backspace*/
@@ -66,16 +65,15 @@ let clearBtn = document.getElementById('C');
 let backspaceBtn = document.getElementById('Del');
 
 
-if (operation.includes(".")){periodBtn.disabled = true;}
-else{periodBtn.disabled = false;}
-
 disableOperatorBtns();
 
 /*event listeners*/
 
-oneBtn.addEventListener('click', function () {
+oneBtn.addEventListener('click', 
+  function () {
   enableOperatorBtns();
   populateDisplay('1');
+  
 });
 twoBtn.addEventListener('click', function () {
   enableOperatorBtns();
@@ -133,18 +131,21 @@ divideBtn.addEventListener('click', function () {
 
 equalsBtn.addEventListener('click', function () {
   populateDisplay(' = ');
-  disableOperatorBtns();
+  
   splitString(display.textContent);
 }); 
 
 periodBtn.addEventListener('click', function () {
   populateDisplay('.');
-disablePeriod();
 });
 
 clearBtn.addEventListener('click', clearDisplay);
 
 backspaceBtn.addEventListener('click', backspaceDelete);
+
+function disablePeriod(){
+  periodBtn.disabled = true;
+}
 
 function backspaceDelete(){
   let text = display.innerText.replace(" ","").slice(0, -1);
@@ -174,6 +175,19 @@ function enableOperatorBtns(){
 }
 
 
+
+
+function splitString(str) {
+  let characters = str.split(' ');
+  num1 = Number(characters[0]);
+  num2 = Number(characters[2]);
+  operator = characters[1];
+  console.log(num1);
+  console.log(num2);
+  console.log(operator);
+  operate(num1, num2, operator);
+}
+
 function operate(num1, num2, operator) {
   if (operator == '+') {
     let result = add(num1, num2);
@@ -184,16 +198,4 @@ function operate(num1, num2, operator) {
   } else if (operator == '/') {
     let result = divide(num1, num2);
   }
-}
-
-function splitString(str) {
-  let characters = str.split(' ');
-  console.log(characters);
-  num1 = Number(characters[0]);
-  num2 = Number(characters[2]);
-  operator = characters[1];
-  console.log(num1);
-  console.log(num2);
-  console.log(operator);
-  operate(num1, num2, operator);
 }
