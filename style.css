@@ -1,6 +1,5 @@
 :root {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  
 }
 
 body {
@@ -28,12 +27,12 @@ main {
   text-align: center;
   display: flex;
   max-width: 380px;
-  width: 100%;
+  width: 380px;
   height: 80px;
   background-color: lightgreen;
   border: 1px solid green;
   justify-content: center;
-align-items: center;
+  align-items: center;
 }
 
 button {
@@ -45,24 +44,28 @@ button {
   text-align: center;
 }
 
-
-.number{
-background-color: teal;
+.number {
+  background-color: teal;
 }
 
 button:disabled {
   background-color: yellowgreen;
 }
 
-.operator, .del, .period{
+.operator,
+.del,
+.decimal,
+#clear {
   background-color: turquoise;
 }
 
-#Del, #zero  {
+#del {
   width: 170px;
-  height: 80px; 
+  height: 80px;
 }
-
+#zero {
+  width: 260px;
+}
 
 row {
   display: flex;
