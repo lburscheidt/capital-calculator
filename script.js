@@ -165,7 +165,7 @@ multiplyBtn.addEventListener('click', function () {
 
 equalsBtn.addEventListener('click', function () {
   putOperatorInDisplay('=');
-  /*disableOperatorBtns();*/
+  disableDecimal();
   saveVariables();
 });
 
