@@ -3,6 +3,11 @@ let num2 = '';
 let operator = '';
 let result = '';
 disableOperatorBtns();
+disableEquals();
+
+if (display.textContent.match(/(^[0-9]+)( )((\+)|(\-)|(\*)|(\/))( )([0-9]+)/)) {
+  enableEquals;
+}
 
 function add(num1, num2) {
   result = num1 + num2;
@@ -27,6 +32,10 @@ function divide(num1, num2) {
 
 function putNumberInDisplay(num) {
   display.textContent += num;
+  let characters = display.textContent;
+  if (characters.match(/(^[0-9]+)( )((\+)|(\-)|(\*)|(\/))( )([0-9]+)/)) {
+    enableEquals();
+  }
 }
 
 function putOperatorInDisplay(op) {
@@ -66,6 +75,15 @@ let equalsBtn = document.getElementById('=');
 
 let clearBtn = document.getElementById('clear');
 let deleteBtn = document.getElementById('del');
+
+/*enable/disable equals */
+function enableEquals() {
+  document.getElementById('=').disabled = false;
+}
+
+function disableEquals() {
+  document.getElementById('=').disabled = true;
+}
 
 /*event listeners: numbers*/
 oneBtn.addEventListener('click', function () {
