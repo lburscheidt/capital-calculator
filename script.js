@@ -10,15 +10,15 @@ if (display.textContent.match(/(^[0-9]+)( )((\+)|(\-)|(\*)|(\/))( )([0-9]+)/)) {
 }
 
 function add(num1, num2) {
-  result = num1 + num2;
+  result = parseFloat((num1 + num2).toFixed(6));
 }
 
 function subtract(num1, num2) {
-  result = num1 - num2;
+  result = parseFloat((num1 - num2).toFixed(6));
 }
 
 function multiply(num1, num2) {
-  result = num1 * num2;
+  result = parseFloat((num1 * num2).toFixed(6));
 }
 
 function divide(num1, num2) {
@@ -26,14 +26,15 @@ function divide(num1, num2) {
     result =
       "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>";
   } else {
-    result = num1 / num2;
+    result = parseFloat((num1 / num2).toFixed(6));
   }
 }
 
 function putNumberInDisplay(num) {
   display.textContent += num;
-  let characters = display.textContent;
-  if (characters.match(/(^[0-9]+)( )((\+)|(\-)|(\*)|(\/))( )([0-9]+)/)) {
+  if (
+    display.textContent.match(/(^[0-9]+)( )((\+)|(\-)|(\*)|(\/))( )([0-9]+)/)
+  ) {
     enableEquals();
   }
 }
