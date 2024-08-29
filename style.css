@@ -61,8 +61,10 @@ button {
   height: 80px;
 }
 #zero {
-  width: 260px;
+  width: 170px;
 }
+
+
 button:disabled {
   background-color: yellowgreen;
 }

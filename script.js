@@ -4,10 +4,7 @@ let operator = '';
 let result = '';
 disableOperatorBtns();
 disableEquals();
-
-if (display.textContent.match(/(^[0-9]+)( )((\+)|(\-)|(\*)|(\/))( )([0-9]+)/)) {
-  enableEquals;
-}
+let regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/gim;
 
 function add(num1, num2) {
   result = parseFloat((num1 + num2).toFixed(6));
@@ -32,9 +29,7 @@ function divide(num1, num2) {
 
 function putNumberInDisplay(num) {
   display.textContent += num;
-  if (
-    display.textContent.match(/(^[0-9]+)( )((\+)|(\-)|(\*)|(\/))( )([0-9]+)/)
-  ) {
+  if (display.innerHTML.match(regex)) {
     enableEquals();
   }
 }
@@ -76,6 +71,7 @@ let equalsBtn = document.getElementById('=');
 
 let clearBtn = document.getElementById('clear');
 let deleteBtn = document.getElementById('del');
+let decimalsBtn = document.getElementById('.');
 
 /*enable/disable equals */
 function enableEquals() {
@@ -84,6 +80,15 @@ function enableEquals() {
 
 function disableEquals() {
   document.getElementById('=').disabled = true;
+}
+
+/*enable/disable decimals */
+function enableDecimal() {
+  document.getElementById('.').disabled = false;
+}
+
+function disableDecimal() {
+  document.getElementById('.').disabled = true;
 }
 
 /*event listeners: numbers*/
@@ -127,27 +132,34 @@ zeroBtn.addEventListener('click', function () {
   putNumberInDisplay('0');
   enableOperatorBtns();
 });
-
+decimalsBtn.addEventListener('click', function () {
+  putNumberInDisplay('.');
+  disableDecimal();
+});
 /*event listeners: operations*/
 plusBtn.addEventListener('click', function () {
   putOperatorInDisplay('+');
   disableOperatorBtns();
+  enableDecimal();
   saveVariables();
 });
 
 minusBtn.addEventListener('click', function () {
   putOperatorInDisplay('-');
   disableOperatorBtns();
+  enableDecimal();
   saveVariables();
 });
 divideBtn.addEventListener('click', function () {
   putOperatorInDisplay('/');
   disableOperatorBtns();
+  enableDecimal();
   saveVariables();
 });
 multiplyBtn.addEventListener('click', function () {
   putOperatorInDisplay('*');
   disableOperatorBtns();
+  enableDecimal();
   saveVariables();
 });
 
@@ -178,6 +190,8 @@ function clearDisplay() {
   num2 = '';
   operator = '';
   operator2 = '';
+  disableOperatorBtns();
+  disableEquals();
 }
 
 /*math logic */
