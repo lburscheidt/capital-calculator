@@ -17,7 +17,12 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
-  result = num1 / num2;
+  if (num2 == 0 || num2 == '0') {
+    result =
+      "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>";
+  } else {
+    result = num1 / num2;
+  }
 }
 
 function putNumberInDisplay(num) {
@@ -166,12 +171,12 @@ function saveVariables() {
     operator2 = str[3];
     operate(num1, num2, operator);
     if (operator2 == '=') {
-      display.textContent = result;
+      display.innerHTML = result;
       num1 = result;
       operator = '';
       num2 = '';
     } else {
-      display.textContent = result + ' ' + operator2 + ' ';
+      display.innerHTML = result + ' ' + operator2 + ' ';
     }
   }
 }
