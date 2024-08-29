@@ -170,7 +170,15 @@ function saveVariables() {
     num2 = Number(str[2]);
     operator2 = str[3];
     operate(num1, num2, operator);
-    if (operator2 == '=') {
+    if (
+      result ==
+      "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>"
+    ) {
+      display.innerHTML = result;
+      num1 = '';
+      num2 = '';
+      operator = '';
+    } else if (operator2 == '=') {
       display.innerHTML = result;
       num1 = result;
       operator = '';
