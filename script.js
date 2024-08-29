@@ -155,6 +155,10 @@ function backspaceDelete() {
 }
 function clearDisplay() {
   display.textContent = '';
+  num1 = '';
+  num2 = '';
+  operator = '';
+  operator2 = '';
 }
 
 /*math logic */
