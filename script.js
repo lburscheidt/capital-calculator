@@ -1,44 +1,46 @@
-let num1;
-let num2;
-let operator;
-let display = document.getElementById('display');
-
-let operation = display.textContent;
+let num1 = '';
+let num2 = '';
+let operator = '';
+let result = '';
+disableOperatorBtns();
 
 function add(num1, num2) {
-  return (display.textContent = num1 + num2);
+  result = num1 + num2;
 }
+
 function subtract(num1, num2) {
-  return (display.textContent = num1 - num2);
+  result = num1 - num2;
 }
+
 function multiply(num1, num2) {
-  return (display.textContent = num1 * num2);
+  result = num1 * num2;
 }
+
 function divide(num1, num2) {
-  if (num2 !== 0) {
-    return (display.textContent = num1 / num2);
-  } else {
-    return (display.innerHTML = '<i class="fa-solid fa-skull"></i><i class="fa-solid fa-skull"></i><i class="fa-solid fa-skull"></i>');
-  }
+  result = num1 / num2;
 }
 
-
-function operate(num1, num2, operator) {
-  if (operator == '+') {
-    add(num1, num2);
-  } else if (operator == '-') {
-    subtract(num1, num2);
-  } else if (operator == '*') {
-    multiply(num1, num2);
-  } else if (operator == '/') {
-    divide(num1, num2);
-  }
+function putNumberInDisplay(num) {
+  display.textContent += num;
 }
 
-/*populate display*/
+function putOperatorInDisplay(op) {
+  let opString = ' ' + op + ' ';
+  console.log(opString);
+  display.textContent += opString;
+}
 
+function disableOperatorBtns() {
+  document.querySelectorAll('button.operator').forEach(elem => {
+    elem.disabled = true;
+  });
+}
 
-/*numbers*/
+function enableOperatorBtns() {
+  document.querySelectorAll('button.operator').forEach(elem => {
+    elem.disabled = false;
+  });
+}
 
 let oneBtn = document.getElementById('1');
 let twoBtn = document.getElementById('2');
@@ -51,151 +53,137 @@ let eightBtn = document.getElementById('8');
 let nineBtn = document.getElementById('9');
 let zeroBtn = document.getElementById('zero');
 
-/*operators*/
 let plusBtn = document.getElementById('+');
 let minusBtn = document.getElementById('-');
-let multiplyBtn = document.getElementById('*');
 let divideBtn = document.getElementById('/');
-let periodBtn = document.getElementById('.');
+let multiplyBtn = document.getElementById('*');
 let equalsBtn = document.getElementById('=');
 
-/*clear & backspace*/
-let clearBtn = document.getElementById('C');
+let clearBtn = document.getElementById('clear');
+let deleteBtn = document.getElementById('del');
 
-let backspaceBtn = document.getElementById('Del');
-
-
-disableOperatorBtns();
-
-/*event listeners*/
-
-oneBtn.addEventListener('click', 
-  function () {
+/*event listeners: numbers*/
+oneBtn.addEventListener('click', function () {
+  putNumberInDisplay('1');
   enableOperatorBtns();
-  populateDisplay('1');
-  
 });
 twoBtn.addEventListener('click', function () {
+  putNumberInDisplay('2');
   enableOperatorBtns();
-  populateDisplay('2');
 });
 threeBtn.addEventListener('click', function () {
+  putNumberInDisplay('3');
   enableOperatorBtns();
-  populateDisplay('3');
 });
 fourBtn.addEventListener('click', function () {
+  putNumberInDisplay('4');
   enableOperatorBtns();
-  populateDisplay('4');
 });
 fiveBtn.addEventListener('click', function () {
+  putNumberInDisplay('5');
   enableOperatorBtns();
-  populateDisplay('5');
 });
 sixBtn.addEventListener('click', function () {
+  putNumberInDisplay('6');
   enableOperatorBtns();
-  populateDisplay('6');
 });
 sevenBtn.addEventListener('click', function () {
+  putNumberInDisplay('7');
   enableOperatorBtns();
-  populateDisplay('7');
 });
 eightBtn.addEventListener('click', function () {
+  putNumberInDisplay('8');
   enableOperatorBtns();
-  populateDisplay('8');
 });
 nineBtn.addEventListener('click', function () {
+  putNumberInDisplay('9');
   enableOperatorBtns();
-  populateDisplay('9');
 });
 zeroBtn.addEventListener('click', function () {
+  putNumberInDisplay('0');
   enableOperatorBtns();
-  populateDisplay('0');
 });
 
+/*event listeners: operations*/
 plusBtn.addEventListener('click', function () {
-  populateDisplay(' + ');
+  putOperatorInDisplay('+');
   disableOperatorBtns();
+  saveVariables();
 });
+
 minusBtn.addEventListener('click', function () {
-  populateDisplay(' - ');
+  putOperatorInDisplay('-');
   disableOperatorBtns();
-});
-multiplyBtn.addEventListener('click', function () {
-  populateDisplay(' * ');
-  disableOperatorBtns();
+  saveVariables();
 });
 divideBtn.addEventListener('click', function () {
-  populateDisplay(' / ');
+  putOperatorInDisplay('/');
   disableOperatorBtns();
+  saveVariables();
+});
+multiplyBtn.addEventListener('click', function () {
+  putOperatorInDisplay('*');
+  disableOperatorBtns();
+  saveVariables();
 });
 
 equalsBtn.addEventListener('click', function () {
-  populateDisplay(' = ');
-  
-  splitString(display.textContent);
-}); 
-
-periodBtn.addEventListener('click', function () {
-  populateDisplay('.');
+  putOperatorInDisplay('=');
+  /*disableOperatorBtns();*/
+  saveVariables();
 });
 
+/*event listeners: delete, clear */
+
+deleteBtn.addEventListener('click', backspaceDelete);
 clearBtn.addEventListener('click', clearDisplay);
 
-backspaceBtn.addEventListener('click', backspaceDelete);
+/*functions: delete, clear */
 
-function disablePeriod(){
-  periodBtn.disabled = true;
+function backspaceDelete() {
+  let text = display.textContent.replace(' ', '').slice(0, -1);
+  console.log(text);
+  display.textContent = text;
+  if ((plusBtn.disabled = true)) {
+    enableOperatorBtns();
+  }
 }
-
-function backspaceDelete(){
-  let text = display.innerText.replace(" ","").slice(0, -1);
-console.log(text);
-display.innerText = text;
-if (plusBtn.disabled = true) {enableOperatorBtns()};
-};
-
-function populateDisplay(str) {
-  display.textContent += str;
-}
-
 function clearDisplay() {
   display.textContent = '';
 }
 
-function disableOperatorBtns(){
-  document.querySelectorAll('button.operator').forEach(elem => {
-    elem.disabled = true;
-});
-}
-
-function enableOperatorBtns(){
-    document.querySelectorAll('button.operator').forEach(elem => {
-    elem.disabled = false;
-});
-}
-
-
-
-
-function splitString(str) {
-  let characters = str.split(' ');
-  num1 = Number(characters[0]);
-  num2 = Number(characters[2]);
-  operator = characters[1];
-  console.log(num1);
-  console.log(num2);
-  console.log(operator);
-  operate(num1, num2, operator);
+/*math logic */
+function saveVariables() {
+  let str = display.textContent.trimEnd().split(' ');
+  console.log(str);
+  if (str.length < 3) {
+    num1 = str[0];
+    operator = str[1];
+  } else {
+    num1 = Number(str[0]);
+    operator = str[1];
+    num2 = Number(str[2]);
+    operator2 = str[3];
+    operate(num1, num2, operator);
+    if (operator2 == '=') {
+      display.textContent = result;
+      num1 = result;
+      operator = '';
+      num2 = '';
+    } else {
+      display.textContent = result + ' ' + operator2 + ' ';
+    }
+  }
 }
 
 function operate(num1, num2, operator) {
   if (operator == '+') {
-    let result = add(num1, num2);
+    add(num1, num2);
   } else if (operator == '-') {
-    let result = subtract(num1, num2);
+    subtract(num1, num2);
   } else if (operator == '*') {
-    let result = multiply(num1, num2);
+    multiply(num1, num2);
   } else if (operator == '/') {
-    let result = divide(num1, num2);
+    divide(num1, num2);
   }
 }

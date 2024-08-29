@@ -26,8 +26,8 @@ main {
   font-size: 4rem;
   text-align: center;
   display: flex;
-  max-width: 380px;
-  width: 380px;
+  max-width: 350px;
+  width: 350px;
   height: 80px;
   background-color: lightgreen;
   border: 1px solid green;
