@@ -98,41 +98,106 @@ document.onkeydown = pressKey;
 /*keyboard support */
 function pressKey(event) {
   let keyBoardKey = event.key;
-  let keyCode = event.code;
 
   if (keyBoardKey === '1') {
-    putNumberInDisplay('1');
-    enableOperatorBtns();
+    if (operator2 == '=') {
+      clearDisplay();
+      putNumberInDisplay('1');
+      enableOperatorBtns();
+    } else {
+      putNumberInDisplay('1');
+      enableOperatorBtns();
+    }
   } else if (keyBoardKey === '2') {
-    putNumberInDisplay('2');
-    enableOperatorBtns();
+    if (operator2 == '=') {
+      clearDisplay();
+      putNumberInDisplay('2');
+      enableOperatorBtns();
+    } else {
+      putNumberInDisplay('2');
+      enableOperatorBtns();
+    }
   } else if (keyBoardKey === '3') {
-    putNumberInDisplay('3');
-    enableOperatorBtns();
+    if (operator2 == '=') {
+      clearDisplay();
+      putNumberInDisplay('3');
+      enableOperatorBtns();
+    } else {
+      putNumberInDisplay('3');
+      enableOperatorBtns();
+    }
   } else if (keyBoardKey === '4') {
-    putNumberInDisplay('4');
-    enableOperatorBtns();
+    if (operator2 == '=') {
+      clearDisplay();
+      putNumberInDisplay('4');
+      enableOperatorBtns();
+    } else {
+      putNumberInDisplay('4');
+      enableOperatorBtns();
+    }
   } else if (keyBoardKey === '5') {
-    putNumberInDisplay('5');
-    enableOperatorBtns();
+    if (operator2 == '=') {
+      clearDisplay();
+      putNumberInDisplay('5');
+      enableOperatorBtns();
+    } else {
+      putNumberInDisplay('5');
+      enableOperatorBtns();
+    }
   } else if (keyBoardKey === '6') {
-    putNumberInDisplay('6');
-    enableOperatorBtns();
+    if (operator2 == '=') {
+      clearDisplay();
+      putNumberInDisplay('6');
+      enableOperatorBtns();
+    } else {
+      putNumberInDisplay('6');
+      enableOperatorBtns();
+    }
   } else if (keyBoardKey === '7') {
-    putNumberInDisplay('7');
-    enableOperatorBtns();
+    if (operator2 == '=') {
+      clearDisplay();
+      putNumberInDisplay('7');
+      enableOperatorBtns();
+    } else {
+      putNumberInDisplay('7');
+      enableOperatorBtns();
+    }
   } else if (keyBoardKey === '8') {
-    putNumberInDisplay('8');
-    enableOperatorBtns();
+    if (operator2 == '=') {
+      clearDisplay();
+      putNumberInDisplay('8');
+      enableOperatorBtns();
+    } else {
+      putNumberInDisplay('8');
+      enableOperatorBtns();
+    }
   } else if (keyBoardKey === '9') {
-    putNumberInDisplay('9');
-    enableOperatorBtns();
+    if (operator2 == '=') {
+      clearDisplay();
+      putNumberInDisplay('9');
+      enableOperatorBtns();
+    } else {
+      putNumberInDisplay('9');
+      enableOperatorBtns();
+    }
   } else if (keyBoardKey === '0') {
-    putNumberInDisplay('0');
-    enableOperatorBtns();
+    if (operator2 == '=') {
+      clearDisplay();
+      putNumberInDisplay('0');
+      enableOperatorBtns();
+    } else {
+      putNumberInDisplay('0');
+      enableOperatorBtns();
+    }
   } else if (keyBoardKey === '.') {
-    putNumberInDisplay('.');
-    enableOperatorBtns();
+    if (operator2 == '=') {
+      clearDisplay();
+      putNumberInDisplay('0');
+      enableOperatorBtns();
+    } else {
+      putNumberInDisplay('0');
+      enableOperatorBtns();
+    }
   } else if (keyBoardKey === '+') {
     putOperatorInDisplay('+');
     disableOperatorBtns();
@@ -157,9 +222,9 @@ function pressKey(event) {
     putOperatorInDisplay('=');
     /*disableDecimal();*/
     saveVariables();
-  } else if (keyBoardKey === 'Backspace') {
+  } else if (keyBoardKey === 'Backspace' || keyBoardKey == 'Delete') {
     backspaceDelete();
-  } else if (keyBoardKey === 'Escape') {
+  } else if (keyBoardKey === 'Control' || keyBoardKey = "Super") {
     clearDisplay();
   }
 }
