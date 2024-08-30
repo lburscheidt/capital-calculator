@@ -2,6 +2,8 @@ let num1 = '';
 let num2 = '';
 let operator = '';
 let result = '';
+let operator2 = '';
+
 disableOperatorBtns();
 disableEquals();
 let regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/gim;
@@ -153,7 +155,7 @@ function pressKey(event) {
     saveVariables();
   } else if (keyBoardKey === 'Enter') {
     putOperatorInDisplay('=');
-    disableDecimal();
+    /*disableDecimal();*/
     saveVariables();
   } else if (keyBoardKey === 'Backspace') {
     backspaceDelete();
@@ -163,50 +165,123 @@ function pressKey(event) {
 }
 
 /*event listeners: numbers*/
-oneBtn.addEventListener('click', function () {
+/*oneBtn.addEventListener('click', function () {
   putNumberInDisplay('1');
   enableOperatorBtns();
+});*/
+
+oneBtn.addEventListener('click', function () {
+  if (operator2 == '=') {
+    clearDisplay();
+    putNumberInDisplay('1');
+    enableOperatorBtns();
+  } else {
+    putNumberInDisplay('1');
+    enableOperatorBtns();
+  }
 });
+
 twoBtn.addEventListener('click', function () {
-  putNumberInDisplay('2');
-  enableOperatorBtns();
+  if (operator2 == '=') {
+    clearDisplay();
+    putNumberInDisplay('2');
+    enableOperatorBtns();
+  } else {
+    putNumberInDisplay('2');
+    enableOperatorBtns();
+  }
 });
 threeBtn.addEventListener('click', function () {
-  putNumberInDisplay('3');
-  enableOperatorBtns();
+  if (operator2 == '=') {
+    clearDisplay();
+    putNumberInDisplay('3');
+    enableOperatorBtns();
+  } else {
+    putNumberInDisplay('3');
+    enableOperatorBtns();
+  }
 });
 fourBtn.addEventListener('click', function () {
-  putNumberInDisplay('4');
-  enableOperatorBtns();
+  if (operator2 == '=') {
+    clearDisplay();
+    putNumberInDisplay('4');
+    enableOperatorBtns();
+  } else {
+    putNumberInDisplay('4');
+    enableOperatorBtns();
+  }
 });
 fiveBtn.addEventListener('click', function () {
-  putNumberInDisplay('5');
-  enableOperatorBtns();
+  if (operator2 == '=') {
+    clearDisplay();
+    putNumberInDisplay('5');
+    enableOperatorBtns();
+  } else {
+    putNumberInDisplay('5');
+    enableOperatorBtns();
+  }
 });
 sixBtn.addEventListener('click', function () {
-  putNumberInDisplay('6');
-  enableOperatorBtns();
+  if (operator2 == '=') {
+    clearDisplay();
+    putNumberInDisplay('6');
+    enableOperatorBtns();
+  } else {
+    putNumberInDisplay('6');
+    enableOperatorBtns();
+  }
 });
 sevenBtn.addEventListener('click', function () {
-  putNumberInDisplay('7');
-  enableOperatorBtns();
+  if (operator2 == '=') {
+    clearDisplay();
+    putNumberInDisplay('7');
+    enableOperatorBtns();
+  } else {
+    putNumberInDisplay('7');
+    enableOperatorBtns();
+  }
 });
 eightBtn.addEventListener('click', function () {
-  putNumberInDisplay('8');
-  enableOperatorBtns();
+  if (operator2 == '=') {
+    clearDisplay();
+    putNumberInDisplay('8');
+    enableOperatorBtns();
+  } else {
+    putNumberInDisplay('8');
+    enableOperatorBtns();
+  }
 });
 nineBtn.addEventListener('click', function () {
-  putNumberInDisplay('9');
-  enableOperatorBtns();
+  if (operator2 == '=') {
+    clearDisplay();
+    putNumberInDisplay('9');
+    enableOperatorBtns();
+  } else {
+    putNumberInDisplay('9');
+    enableOperatorBtns();
+  }
 });
 zeroBtn.addEventListener('click', function () {
-  putNumberInDisplay('0');
-  enableOperatorBtns();
+  if (operator2 == '=') {
+    clearDisplay();
+    putNumberInDisplay('0');
+    enableOperatorBtns();
+  } else {
+    putNumberInDisplay('0');
+    enableOperatorBtns();
+  }
 });
 decimalsBtn.addEventListener('click', function () {
-  putNumberInDisplay('.');
-  disableDecimal();
+  if (operator2 == '=') {
+    clearDisplay();
+    putNumberInDisplay('.');
+    enableOperatorBtns();
+  } else {
+    putNumberInDisplay('.');
+    enableOperatorBtns();
+  }
 });
+
 /*event listeners: operations*/
 plusBtn.addEventListener('click', function () {
   putOperatorInDisplay('+');
@@ -236,7 +311,7 @@ multiplyBtn.addEventListener('click', function () {
 
 equalsBtn.addEventListener('click', function () {
   putOperatorInDisplay('=');
-  disableDecimal();
+  /*disableDecimal();*/
   saveVariables();
 });
 
@@ -288,9 +363,11 @@ function saveVariables() {
       operator = '';
     } else if (operator2 == '=') {
       display.innerHTML = result;
-      num1 = result;
+      /*num1 = result;*/
+      num1 = '';
       operator = '';
       num2 = '';
+      console.log(operator2);
     } else {
       display.innerHTML = result + ' ' + operator2 + ' ';
     }
