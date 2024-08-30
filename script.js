@@ -192,10 +192,10 @@ function pressKey(event) {
   } else if (keyBoardKey === '.') {
     if (operator2 == '=') {
       clearDisplay();
-      putNumberInDisplay('0');
+      putNumberInDisplay('.');
       enableOperatorBtns();
     } else {
-      putNumberInDisplay('0');
+      putNumberInDisplay('.');
       enableOperatorBtns();
     }
   } else if (keyBoardKey === '+') {
