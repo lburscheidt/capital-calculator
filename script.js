@@ -3,10 +3,31 @@ let num2 = '';
 let operator = '';
 let result = '';
 let operator2 = '';
+const regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/g;
+
+let oneBtn = document.getElementById('1');
+let twoBtn = document.getElementById('2');
+let threeBtn = document.getElementById('3');
+let fourBtn = document.getElementById('4');
+let fiveBtn = document.getElementById('5');
+let sixBtn = document.getElementById('6');
+let sevenBtn = document.getElementById('7');
+let eightBtn = document.getElementById('8');
+let nineBtn = document.getElementById('9');
+let zeroBtn = document.getElementById('zero');
+
+let plusBtn = document.getElementById('+');
+let minusBtn = document.getElementById('-');
+let divideBtn = document.getElementById('/');
+let multiplyBtn = document.getElementById('*');
+let equalsBtn = document.getElementById('=');
+
+let clearBtn = document.getElementById('clear');
+let deleteBtn = document.getElementById('del');
+let decimalsBtn = document.getElementById('.');
 
 disableOperatorBtns();
 disableEquals();
-let regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/gim;
 
 function add(num1, num2) {
   result = parseFloat((num1 + num2).toFixed(6));
@@ -21,7 +42,7 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
-  if (num2 == 0 || num2 == '0') {
+  if (num2 === 0) {
     result =
       "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>";
   } else {
@@ -54,28 +75,6 @@ function enableOperatorBtns() {
   });
 }
 
-let oneBtn = document.getElementById('1');
-let twoBtn = document.getElementById('2');
-let threeBtn = document.getElementById('3');
-let fourBtn = document.getElementById('4');
-let fiveBtn = document.getElementById('5');
-let sixBtn = document.getElementById('6');
-let sevenBtn = document.getElementById('7');
-let eightBtn = document.getElementById('8');
-let nineBtn = document.getElementById('9');
-let zeroBtn = document.getElementById('zero');
-
-let plusBtn = document.getElementById('+');
-let minusBtn = document.getElementById('-');
-let divideBtn = document.getElementById('/');
-let multiplyBtn = document.getElementById('*');
-let equalsBtn = document.getElementById('=');
-
-let clearBtn = document.getElementById('clear');
-let deleteBtn = document.getElementById('del');
-let decimalsBtn = document.getElementById('.');
-
-/*enable/disable equals */
 function enableEquals() {
   document.getElementById('=').disabled = false;
 }
@@ -84,7 +83,7 @@ function disableEquals() {
   document.getElementById('=').disabled = true;
 }
 
-/*enable/disable decimals */
+
 function enableDecimal() {
   document.getElementById('.').disabled = false;
 }
@@ -94,13 +93,11 @@ function disableDecimal() {
 }
 
 document.onkeydown = pressKey;
-
-/*keyboard support */
 function pressKey(event) {
   let keyBoardKey = event.key;
 
   if (keyBoardKey === '1') {
-    if (operator2 == '=') {
+    if (operator2 === '=') {
       clearDisplay();
       putNumberInDisplay('1');
       enableOperatorBtns();
@@ -109,7 +106,7 @@ function pressKey(event) {
       enableOperatorBtns();
     }
   } else if (keyBoardKey === '2') {
-    if (operator2 == '=') {
+    if (operator2 === '=') {
       clearDisplay();
       putNumberInDisplay('2');
       enableOperatorBtns();
@@ -118,7 +115,7 @@ function pressKey(event) {
       enableOperatorBtns();
     }
   } else if (keyBoardKey === '3') {
-    if (operator2 == '=') {
+    if (operator2 === '=') {
       clearDisplay();
       putNumberInDisplay('3');
       enableOperatorBtns();
@@ -127,7 +124,7 @@ function pressKey(event) {
       enableOperatorBtns();
     }
   } else if (keyBoardKey === '4') {
-    if (operator2 == '=') {
+    if (operator2 === '=') {
       clearDisplay();
       putNumberInDisplay('4');
       enableOperatorBtns();
@@ -136,7 +133,7 @@ function pressKey(event) {
       enableOperatorBtns();
     }
   } else if (keyBoardKey === '5') {
-    if (operator2 == '=') {
+    if (operator2 === '=') {
       clearDisplay();
       putNumberInDisplay('5');
       enableOperatorBtns();
@@ -145,7 +142,7 @@ function pressKey(event) {
       enableOperatorBtns();
     }
   } else if (keyBoardKey === '6') {
-    if (operator2 == '=') {
+    if (operator2 === '=') {
       clearDisplay();
       putNumberInDisplay('6');
       enableOperatorBtns();
@@ -154,7 +151,7 @@ function pressKey(event) {
       enableOperatorBtns();
     }
   } else if (keyBoardKey === '7') {
-    if (operator2 == '=') {
+    if (operator2 === '=') {
       clearDisplay();
       putNumberInDisplay('7');
       enableOperatorBtns();
@@ -163,7 +160,7 @@ function pressKey(event) {
       enableOperatorBtns();
     }
   } else if (keyBoardKey === '8') {
-    if (operator2 == '=') {
+    if (operator2 === '=') {
       clearDisplay();
       putNumberInDisplay('8');
       enableOperatorBtns();
@@ -172,7 +169,7 @@ function pressKey(event) {
       enableOperatorBtns();
     }
   } else if (keyBoardKey === '9') {
-    if (operator2 == '=') {
+    if (operator2 === '=') {
       clearDisplay();
       putNumberInDisplay('9');
       enableOperatorBtns();
@@ -181,7 +178,7 @@ function pressKey(event) {
       enableOperatorBtns();
     }
   } else if (keyBoardKey === '0') {
-    if (operator2 == '=') {
+    if (operator2 === '=') {
       clearDisplay();
       putNumberInDisplay('0');
       enableOperatorBtns();
@@ -190,7 +187,7 @@ function pressKey(event) {
       enableOperatorBtns();
     }
   } else if (keyBoardKey === '.') {
-    if (operator2 == '=') {
+    if (operator2 === '=') {
       clearDisplay();
       putNumberInDisplay('.');
       enableOperatorBtns();
@@ -222,21 +219,15 @@ function pressKey(event) {
     putOperatorInDisplay('=');
     /*disableDecimal();*/
     saveVariables();
-  } else if (keyBoardKey === 'Backspace' || keyBoardKey == 'Delete') {
+  } else if (keyBoardKey === 'Backspace' || keyBoardKey === 'Delete') {
     backspaceDelete();
-  } else if (keyBoardKey === 'Control' || keyBoardKey == 'Super') {
+  } else if (keyBoardKey === 'Control' || keyBoardKey === 'Super') {
     clearDisplay();
   }
 }
 
-/*event listeners: numbers*/
-/*oneBtn.addEventListener('click', function () {
-  putNumberInDisplay('1');
-  enableOperatorBtns();
-});*/
-
 oneBtn.addEventListener('click', function () {
-  if (operator2 == '=') {
+  if (operator2 === '=') {
     clearDisplay();
     putNumberInDisplay('1');
     enableOperatorBtns();
@@ -247,7 +238,7 @@ oneBtn.addEventListener('click', function () {
 });
 
 twoBtn.addEventListener('click', function () {
-  if (operator2 == '=') {
+  if (operator2 === '=') {
     clearDisplay();
     putNumberInDisplay('2');
     enableOperatorBtns();
@@ -257,7 +248,7 @@ twoBtn.addEventListener('click', function () {
   }
 });
 threeBtn.addEventListener('click', function () {
-  if (operator2 == '=') {
+  if (operator2 === '=') {
     clearDisplay();
     putNumberInDisplay('3');
     enableOperatorBtns();
@@ -267,7 +258,7 @@ threeBtn.addEventListener('click', function () {
   }
 });
 fourBtn.addEventListener('click', function () {
-  if (operator2 == '=') {
+  if (operator2 === '=') {
     clearDisplay();
     putNumberInDisplay('4');
     enableOperatorBtns();
@@ -277,7 +268,7 @@ fourBtn.addEventListener('click', function () {
   }
 });
 fiveBtn.addEventListener('click', function () {
-  if (operator2 == '=') {
+  if (operator2 === '=') {
     clearDisplay();
     putNumberInDisplay('5');
     enableOperatorBtns();
@@ -287,7 +278,7 @@ fiveBtn.addEventListener('click', function () {
   }
 });
 sixBtn.addEventListener('click', function () {
-  if (operator2 == '=') {
+  if (operator2 === '=') {
     clearDisplay();
     putNumberInDisplay('6');
     enableOperatorBtns();
@@ -297,7 +288,7 @@ sixBtn.addEventListener('click', function () {
   }
 });
 sevenBtn.addEventListener('click', function () {
-  if (operator2 == '=') {
+  if (operator2 === '=') {
     clearDisplay();
     putNumberInDisplay('7');
     enableOperatorBtns();
@@ -307,7 +298,7 @@ sevenBtn.addEventListener('click', function () {
   }
 });
 eightBtn.addEventListener('click', function () {
-  if (operator2 == '=') {
+  if (operator2 === '=') {
     clearDisplay();
     putNumberInDisplay('8');
     enableOperatorBtns();
@@ -317,7 +308,7 @@ eightBtn.addEventListener('click', function () {
   }
 });
 nineBtn.addEventListener('click', function () {
-  if (operator2 == '=') {
+  if (operator2 === '=') {
     clearDisplay();
     putNumberInDisplay('9');
     enableOperatorBtns();
@@ -327,7 +318,7 @@ nineBtn.addEventListener('click', function () {
   }
 });
 zeroBtn.addEventListener('click', function () {
-  if (operator2 == '=') {
+  if (operator2 === '=') {
     clearDisplay();
     putNumberInDisplay('0');
     enableOperatorBtns();
@@ -337,7 +328,7 @@ zeroBtn.addEventListener('click', function () {
   }
 });
 decimalsBtn.addEventListener('click', function () {
-  if (operator2 == '=') {
+  if (operator2 === '=') {
     clearDisplay();
     putNumberInDisplay('.');
     enableOperatorBtns();
@@ -405,7 +396,7 @@ function clearDisplay() {
   disableEquals();
 }
 
-/*math logic */
+
 function saveVariables() {
   let str = display.textContent.trimEnd().split(' ');
   console.log(str);
@@ -426,7 +417,7 @@ function saveVariables() {
       num1 = '';
       num2 = '';
       operator = '';
-    } else if (operator2 == '=') {
+    } else if (operator2 === '=') {
       display.innerHTML = result;
       /*num1 = result;*/
       num1 = '';
@@ -440,13 +431,13 @@ function saveVariables() {
 }
 
 function operate(num1, num2, operator) {
-  if (operator == '+') {
+  if (operator === '+') {
     add(num1, num2);
-  } else if (operator == '-') {
+  } else if (operator === '-') {
     subtract(num1, num2);
-  } else if (operator == '*') {
+  } else if (operator === '*') {
     multiply(num1, num2);
-  } else if (operator == '/') {
+  } else if (operator === '/') {
     divide(num1, num2);
   }
 }
