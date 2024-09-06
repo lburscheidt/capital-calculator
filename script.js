@@ -14,7 +14,7 @@ const decimalsBtn = document.getElementById(".")
 const skulls =
   "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>"
 
-/*functions that add, subtract, multiply and divide*/
+
 function add(num1, num2) {
   result = Number(num1) + Number(num2)
 }
@@ -31,7 +31,7 @@ function divide(num1, num2) {
     result = Number(num1) / Number(num2)
   }
 }
-/*function operate that calls one of the mathematical operations functions depending on the operator*/
+
 function operate(num1, num2, operator) {
   if (operator === "+") {
     add(num1, num2)
@@ -44,7 +44,7 @@ function operate(num1, num2, operator) {
   }
 }
 
-/*functions to enable/disable operators, equals, and the decimal button*/
+
 function disableOperatorBtns() {
   operatorBtns.forEach(btn => {
     btn.disabled = true
@@ -72,8 +72,6 @@ function enableDecimalsBtn() {
 function disableDecimalsBtn() {
   decimalsBtn.disabled = true
 }
-
-/*What to do when a number is pressed*/
 function clearDisplayAndMemory() {
   display.textContent = ""
   num1 = ""
@@ -112,8 +110,7 @@ numberBtns.forEach(btn =>
   }),
 )
 
-/*What to do when the decimals button is pressed */
-/*What to do when an operator is pressed*/
+
 function onOperatorPress(op) {
   if (operator === "") {
     operator = op
@@ -134,7 +131,6 @@ operatorBtns.forEach(btn =>
   }),
 )
 
-/*What to do when equals is pressed */
 
 function onEqualsPress() {
   operate(num1, num2, operator)
@@ -150,7 +146,6 @@ equalsBtn.addEventListener("click", () => {
   onEqualsPress()
 })
 
-/*What to do when Backspace and Clear are pressed */
 
 clearBtn.addEventListener("click", clearDisplayAndMemory)
 backspaceBtn.addEventListener("click", backspace)
@@ -185,22 +180,22 @@ function backspace() {
   }
 }
 
-/*keyboard support */
+
 document.onkeydown = pressKey
 function pressKey(event) {
   let keyBoardKey = event.key
   if (/[0-9.]/i.test(keyBoardKey)) {
     onNumberPress(keyBoardKey)
-    /*what to do when a number is pressed*/
+    
   } else if (/\+|\*|\/|\-/i.test(keyBoardKey)) {
-    /*what to do when an operator is pressed*/
+ 
     onOperatorPress(keyBoardKey)
   } else if (keyBoardKey === "=" || keyBoardKey === "Enter") {
     onEqualsPress()
   } else if (keyBoardKey === "Backspace" || keyBoardKey === "Delete") {
     backspace()
   } else if (keyBoardKey === "Control" || keyBoardKey === "Super") {
-    /*what to do when Ctrl or Super are pressed */
+  
     clearDisplayAndMemory()
   }
 }
