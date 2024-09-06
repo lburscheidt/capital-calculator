@@ -4,42 +4,44 @@ let operator = '';
 let result = '';
 let operator2 = '';
 const regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/gmi;
+const operatorsRegex = /\+|\*|\/|\-/i;
 
-const numberButtons = document.querySelectorAll(".number");
-const operatorButtons = document.querySelectorAll(".operator")
+const numberBtns = document.querySelectorAll(".number");
+const operatorBtns = document.querySelectorAll(".operator")
 const equalsBtn = document.querySelector(".equals")
-let clearBtn = document.getElementById('clear');
-let deleteBtn = document.getElementById('del');
-let decimalsBtn = document.getElementById('.');
+const clearBtn = document.querySelector('clear');
+const deleteBtn = document.querySelector('del');
+const decimalsBtn = document.querySelector('.');
 
 /*disableOperatorBtns();
-disableEquals();*/
+disableEqualsBtn();*/
 
 function add(num1, num2) {
-  result = parseFloat((num1 + num2).toFixed(6));
+  return parseFloat((num1 + num2).toFixed(6));
 }
 
 function subtract(num1, num2) {
-  result = parseFloat((num1 - num2).toFixed(6));
+  return parseFloat((num1 - num2).toFixed(6));
 }
 
 function multiply(num1, num2) {
-  result = parseFloat((num1 * num2).toFixed(6));
+  return parseFloat((num1 * num2).toFixed(6));
 }
 
 function divide(num1, num2) {
   if (num2 === 0) {
-    result =
-      "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>";
+    return
+    "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>";
   } else {
-    result = parseFloat((num1 / num2).toFixed(6));
+    return parseFloat((num1 / num2).toFixed(6));
+
   }
 }
 
 function putNumberInDisplay(num) {
   display.textContent += num;
   if (display.innerHTML.match(regex)) {
-    enableEquals();
+    enableEqualsBtn();
   }
 }
 
@@ -49,32 +51,31 @@ function putOperatorInDisplay(op) {
 }
 
 function disableOperatorBtns() {
-  document.querySelectorAll('button.operator').forEach(elem => {
-    elem.disabled = true;
+  document.querySelectorAll('button.operator').forEach(btn => {
+    btn.disabled = true;
   });
 }
 
 function enableOperatorBtns() {
-  document.querySelectorAll('button.operator').forEach(elem => {
-    elem.disabled = false;
+  document.querySelectorAll('button.operator').forEach(btn => {
+    btn.disabled = false;
   });
 }
 
-function enableEquals() {
-  document.getElementById('=').disabled = false;
+function enableEqualsBtn() {
+  document.querySelector('=').disabled = false;
 }
 
-function disableEquals() {
-  document.getElementById('=').disabled = true;
+function disableEqualsBtn() {
+  document.querySelector('=').disabled = true;
 }
 
-
-function enableDecimal() {
-  document.getElementById('.').disabled = false;
+function enableDecimalBtn() {
+  document.querySelector('.').disabled = false;
 }
 
-function disableDecimal() {
-  document.getElementById('.').disabled = true;
+function disableDecimalBtn() {
+  document.querySelector('.').disabled = true;
 }
 
 document.onkeydown = pressKey;
@@ -93,16 +94,16 @@ function pressKey(event) {
     }
   }
 
-  else if (/\+|\*|\/|\-/i.test(keyBoardKey)) {
+  else if (operatorsRegex.test(keyBoardKey)) {
     putOperatorInDisplay(keyBoardKey);
     disableOperatorBtns();
-    enableDecimal();
+    enableDecimalBtn();
     saveVariables();
   }
 
   else if (keyBoardKey === 'Enter') {
     putOperatorInDisplay('=');
-    disableDecimal();
+    disableDecimalBtn();
     saveVariables();
   } else if (keyBoardKey === 'Backspace' || keyBoardKey === 'Delete') {
     backspaceDelete();
@@ -114,7 +115,7 @@ function pressKey(event) {
 
 
 
-numberButtons.forEach(btn => btn.addEventListener("click", event => {
+numberBtns.forEach(btn => btn.addEventListener("click", event => {
   if (operator2 === '=') {
     clearDisplay();
     putNumberInDisplay(btn.id);
@@ -126,20 +127,17 @@ numberButtons.forEach(btn => btn.addEventListener("click", event => {
 }
 ))
 
-operatorButtons.forEach(btn => btn.addEventListener("click", event => {
+operatorBtns.forEach(btn => btn.addEventListener("click", event => {
   putOperatorInDisplay(btn.id);
   disableOperatorBtns();
-  enableDecimal();
+  enableDecimalBtn();
   saveVariables();
 }))
 
 equalsBtn.addEventListener('click', function () {
-  putOperatorInDisplay(btn.id);
+  putOperatorInDisplay("=");
   saveVariables();
 });
-
-/*event listeners: delete, clear */
-
 deleteBtn.addEventListener('click', backspaceDelete);
 clearBtn.addEventListener('click', clearDisplay);
 
@@ -160,7 +158,7 @@ function clearDisplay() {
   operator = '';
   operator2 = '';
   disableOperatorBtns();
-  disableEquals();
+  disableEqualsBtn();
 }
 
 
@@ -175,9 +173,9 @@ function saveVariables() {
     operator = str[1];
     num2 = Number(str[2]);
     operator2 = str[3];
-    operate(num1, num2, operator);
+    let result = operate(num1, num2, operator);
     if (
-      result ==
+      result ===
       "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>"
     ) {
       display.innerHTML = result;
