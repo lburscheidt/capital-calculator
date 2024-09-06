@@ -3,7 +3,7 @@
 
 }
 
-html{
+html {
   background-color: var(--mint-80)
 }
 
@@ -20,19 +20,22 @@ main {
 }
 
 .calculator {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  grid-template-rows: repeat (6, 80px);
+  gap: 10px;
   align-items: center;
   font-size: 3.5rem;
+  flex-wrap: wrap;
 }
 
 .display {
   font-size: 4rem;
   text-align: center;
-  display: flex;
-  max-width: 350px;
-  width: 350px;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  max-width: 400px;
+  /*width: 350px;*/
   height: 80px;
   background-color: var(--mint-10);
   border: 1px solid var(--mint-80);
@@ -64,11 +67,15 @@ button {
 }
 
 #del {
+  grid-column-start: 2;
+  grid-column-end: 4;
   width: 170px;
-  height: 80px;
 }
+
 #zero {
   width: 170px;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 
