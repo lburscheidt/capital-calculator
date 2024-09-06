@@ -3,7 +3,7 @@ let num2 = '';
 let operator = '';
 let result = '';
 let operator2 = '';
-const regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/g;
+const regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/gmi;
 
 let oneBtn = document.getElementById('1');
 let twoBtn = document.getElementById('2');
@@ -26,8 +26,8 @@ let clearBtn = document.getElementById('clear');
 let deleteBtn = document.getElementById('del');
 let decimalsBtn = document.getElementById('.');
 
-disableOperatorBtns();
-disableEquals();
+/*disableOperatorBtns();
+disableEquals();*/
 
 function add(num1, num2) {
   result = parseFloat((num1 + num2).toFixed(6));
@@ -58,9 +58,8 @@ function putNumberInDisplay(num) {
 }
 
 function putOperatorInDisplay(op) {
-  let opString = ' ' + op + ' ';
-  console.log(opString);
-  display.textContent += opString;
+  display.textContent += ' ' + op + ' ';
+  disableOperatorBtns();
 }
 
 function disableOperatorBtns() {
@@ -225,108 +224,22 @@ function pressKey(event) {
     clearDisplay();
   }
 }
+/* Add event listeners*/
 
-oneBtn.addEventListener('click', function () {
-  if (operator2 === '=') {
-    clearDisplay();
-    putNumberInDisplay('1');
-    enableOperatorBtns();
-  } else {
-    putNumberInDisplay('1');
-    enableOperatorBtns();
-  }
-});
+const numberButtons = document.querySelectorAll(".number");
 
-twoBtn.addEventListener('click', function () {
+numberButtons.forEach(btn => btn.addEventListener("click", event => {
   if (operator2 === '=') {
     clearDisplay();
-    putNumberInDisplay('2');
+    putNumberInDisplay(btn.id);
     enableOperatorBtns();
   } else {
-    putNumberInDisplay('2');
+    putNumberInDisplay(btn.id);
     enableOperatorBtns();
   }
-});
-threeBtn.addEventListener('click', function () {
-  if (operator2 === '=') {
-    clearDisplay();
-    putNumberInDisplay('3');
-    enableOperatorBtns();
-  } else {
-    putNumberInDisplay('3');
-    enableOperatorBtns();
-  }
-});
-fourBtn.addEventListener('click', function () {
-  if (operator2 === '=') {
-    clearDisplay();
-    putNumberInDisplay('4');
-    enableOperatorBtns();
-  } else {
-    putNumberInDisplay('4');
-    enableOperatorBtns();
-  }
-});
-fiveBtn.addEventListener('click', function () {
-  if (operator2 === '=') {
-    clearDisplay();
-    putNumberInDisplay('5');
-    enableOperatorBtns();
-  } else {
-    putNumberInDisplay('5');
-    enableOperatorBtns();
-  }
-});
-sixBtn.addEventListener('click', function () {
-  if (operator2 === '=') {
-    clearDisplay();
-    putNumberInDisplay('6');
-    enableOperatorBtns();
-  } else {
-    putNumberInDisplay('6');
-    enableOperatorBtns();
-  }
-});
-sevenBtn.addEventListener('click', function () {
-  if (operator2 === '=') {
-    clearDisplay();
-    putNumberInDisplay('7');
-    enableOperatorBtns();
-  } else {
-    putNumberInDisplay('7');
-    enableOperatorBtns();
-  }
-});
-eightBtn.addEventListener('click', function () {
-  if (operator2 === '=') {
-    clearDisplay();
-    putNumberInDisplay('8');
-    enableOperatorBtns();
-  } else {
-    putNumberInDisplay('8');
-    enableOperatorBtns();
-  }
-});
-nineBtn.addEventListener('click', function () {
-  if (operator2 === '=') {
-    clearDisplay();
-    putNumberInDisplay('9');
-    enableOperatorBtns();
-  } else {
-    putNumberInDisplay('9');
-    enableOperatorBtns();
-  }
-});
-zeroBtn.addEventListener('click', function () {
-  if (operator2 === '=') {
-    clearDisplay();
-    putNumberInDisplay('0');
-    enableOperatorBtns();
-  } else {
-    putNumberInDisplay('0');
-    enableOperatorBtns();
-  }
-});
+}
+))
+
 decimalsBtn.addEventListener('click', function () {
   if (operator2 === '=') {
     clearDisplay();

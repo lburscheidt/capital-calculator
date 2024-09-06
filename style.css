@@ -83,8 +83,3 @@ button:disabled {
   background-color: var(--mint-10);
   color: #fff;
 }
-
-row {
-  display: flex;
-  gap: 10px;
-}
