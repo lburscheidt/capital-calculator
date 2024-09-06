@@ -5,19 +5,19 @@ let result = '';
 let operator2 = '';
 const regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/gmi;
 const operatorsRegex = /\+|\*|\/|\-/i;
-
 const numberBtns = document.querySelectorAll(".number");
 const operatorBtns = document.querySelectorAll(".operator")
-const equalsBtn = document.querySelector(".equals")
-const clearBtn = document.querySelector('clear');
-const deleteBtn = document.querySelector('del');
-const decimalsBtn = document.querySelector('.');
+const equalsBtn = document.querySelector(".equals");
+const clearBtn = document.getElementById('clear');
+const deleteBtn = document.getElementById('del');
+const decimalsBtn = document.getElementById(".")
+const skulls = "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>";
 
-/*disableOperatorBtns();
-disableEqualsBtn();*/
+disableOperatorBtns();
+disableEqualsBtn();
 
 function add(num1, num2) {
-  return parseFloat((num1 + num2).toFixed(6));
+  return num1 + num2;
 }
 
 function subtract(num1, num2) {
@@ -41,7 +41,7 @@ function divide(num1, num2) {
 function putNumberInDisplay(num) {
   display.textContent += num;
   if (display.innerHTML.match(regex)) {
-    enableEqualsBtn();
+     enableEqualsBtn();
   }
 }
 
@@ -63,15 +63,15 @@ function enableOperatorBtns() {
 }
 
 function enableEqualsBtn() {
-  document.querySelector('=').disabled = false;
+  document.getElementById('.equals').disabled = false;
 }
 
 function disableEqualsBtn() {
-  document.querySelector('=').disabled = true;
+  document.getElementById('.equals').disabled = true;
 }
 
 function enableDecimalBtn() {
-  document.querySelector('.').disabled = false;
+  document.getElementById('.').disabled = false;
 }
 
 function disableDecimalBtn() {
@@ -111,37 +111,81 @@ function pressKey(event) {
     clearDisplay();
   }
 }
-/* Add event listeners*/
-
-
 
 numberBtns.forEach(btn => btn.addEventListener("click", event => {
-  if (operator2 === '=') {
-    clearDisplay();
-    putNumberInDisplay(btn.id);
-    enableOperatorBtns();
-  } else {
-    putNumberInDisplay(btn.id);
+  putNumberInDisplay(btn.id);
+  if (operatorsRegex.test(display.textContent)) {
+    num2 += btn.id;
+    console.log(num2);
     enableOperatorBtns();
   }
+  else if (operator2 === '=') {
+    clearDisplay();
+    putNumberInDisplay(btn.id);
+    num1 += btn.id;
+    console.log(num1);
+     enableOperatorBtns();
+  }
+  else {
+    num1 += btn.id;
+    console.log(num1);
+  }
+  enableOperatorBtns();
 }
+
 ))
 
+function add(num1, num2) {
+  return num1 + num2;
+}
+
+function subtract(num1, num2) {
+  return num1 - num2;
+}
+
+function multiply(num1, num2) {
+  return num1 * num2;
+}
+
+function divide(nuum1, num2) {
+  if (num2 === 0) { return skulls; }
+  else { return num1 / num2; }
+}
+
+function operate(num1, num2, operator) {
+  number1 = Number(num1);
+  number2 = Number(num2);
+  if (operator === '+') {
+    display.innerHTML = add(number1, number2)
+  } else if (operator === '-') {
+    display.innerHTML = subtract(number1, number2)
+  } else if (operator === '*') {
+    display.innerHTML = multiply(number1, number2)
+  }
+  else if (operator === "/") {
+    display.innerHTML = divide(number1, number2)
+  }
+  num1 = number2;
+  num2 = "";
+  operator = "";
+}
+
+equalsBtn.addEventListener('click', () => {
+  operate(num1, num2, operator);
+}
+)
+
 operatorBtns.forEach(btn => btn.addEventListener("click", event => {
+  operator = btn.id;
+  console.log(operator);
   putOperatorInDisplay(btn.id);
   disableOperatorBtns();
   enableDecimalBtn();
-  saveVariables();
+
 }))
 
-equalsBtn.addEventListener('click', function () {
-  putOperatorInDisplay("=");
-  saveVariables();
-});
 deleteBtn.addEventListener('click', backspaceDelete);
 clearBtn.addEventListener('click', clearDisplay);
-
-/*functions: delete, clear */
 
 function backspaceDelete() {
   let text = display.textContent.replace(' ', '').slice(0, -1);
@@ -151,6 +195,7 @@ function backspaceDelete() {
     enableOperatorBtns();
   }
 }
+
 function clearDisplay() {
   display.textContent = '';
   num1 = '';
@@ -162,47 +207,4 @@ function clearDisplay() {
 }
 
 
-function saveVariables() {
-  let str = display.textContent.trimEnd().split(' ');
-  console.log(str);
-  if (str.length < 3) {
-    num1 = str[0];
-    operator = str[1];
-  } else {
-    num1 = Number(str[0]);
-    operator = str[1];
-    num2 = Number(str[2]);
-    operator2 = str[3];
-    let result = operate(num1, num2, operator);
-    if (
-      result ===
-      "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>"
-    ) {
-      display.innerHTML = result;
-      num1 = '';
-      num2 = '';
-      operator = '';
-    } else if (operator2 === '=') {
-      display.innerHTML = result;
-      /*num1 = result;*/
-      num1 = '';
-      operator = '';
-      num2 = '';
-      console.log(operator2);
-    } else {
-      display.innerHTML = result + ' ' + operator2 + ' ';
-    }
-  }
-}
 
-function operate(num1, num2, operator) {
-  if (operator === '+') {
-    add(num1, num2);
-  } else if (operator === '-') {
-    subtract(num1, num2);
-  } else if (operator === '*') {
-    multiply(num1, num2);
-  } else if (operator === '/') {
-    divide(num1, num2);
-  }
-}
