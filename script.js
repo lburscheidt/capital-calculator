@@ -1,177 +1,188 @@
-let num1 = '';
-let num2 = '';
-let operator = '';
-let result = '';
-let operator2 = '';
-const regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/gmi;
-const operatorsRegex = /\+|\*|\/|\-/i;
-const numberBtns = document.querySelectorAll(".number");
-const operatorBtns = document.querySelectorAll(".operator");
-const equalsBtn = document.getElementById("=");
-const clearBtn = document.getElementById('clear');
-const deleteBtn = document.getElementById('del');
-const decimalsBtn = document.getElementById(".");
-const skulls = "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>";
+let num1 = ""
+let num2 = ""
+let operator = ""
+let result = ""
+let operator2 = ""
+const regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/gim
+const operatorsRegex = /\+|\*|\/|\-/i
+const numberBtns = document.querySelectorAll(".number")
+const operatorBtns = document.querySelectorAll(".operator")
+const equalsBtn = document.getElementById("=")
+const clearBtn = document.getElementById("clear")
+const backspaceBtn = document.getElementById("del")
+const decimalsBtn = document.getElementById(".")
+const skulls =
+  "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>"
 
-disableOperatorBtns();
-disableEqualsBtn();
-
-function putNumberInDisplay(num) {
-  display.textContent += num;
-  if (operatorsRegex.test(display.textContent)) {
-    num2 += num;
-    enableEqualsBtn();
+/*functions that add, subtract, multiply and divide*/
+function add(num1, num2) {
+  result = Number(num1) + Number(num2)
+}
+function subtract(num1, num2) {
+  result = Number(num1) - Number(num2)
+}
+function multiply(num1, num2) {
+  result = Number(num1) * Number(num2)
+}
+function divide(num1, num2) {
+  if (num2 === 0) {
+    return skulls
+  } else {
+    result = Number(num1) / Number(num2)
   }
-  else { num1 += num }
-  enableOperatorBtns()
+}
+/*function operate that calls one of the mathematical operations functions depending on the operator*/
+function operate(num1, num2, operator) {
+  if (operator === "+") {
+    add(num1, num2)
+  } else if (operator === "-") {
+    subtract(num1, num2)
+  } else if (operator === "*") {
+    multiply(num1, num2)
+  } else if (operator === "/") {
+    divide(num1, num2)
+  }
 }
 
-function putOperatorInDisplay(op) {
-  display.textContent += ' ' + op + ' ';
-}
-
+/*functions to enable/disable operators, equals, and the decimal button*/
 function disableOperatorBtns() {
   operatorBtns.forEach(btn => {
-    btn.disabled = true;
-  });
+    btn.disabled = true
+  })
 }
 
 function enableOperatorBtns() {
   operatorBtns.forEach(btn => {
-    btn.disabled = false;
-  });
+    btn.disabled = false
+  })
 }
 
 function enableEqualsBtn() {
-  document.getElementById("=").disabled = false;
+  equalsBtn.disabled = false
 }
 
 function disableEqualsBtn() {
-  document.getElementById("=").disabled = true;
+  equalsBtn.disabled = true
 }
 
-function enableDecimalBtn() {
-  document.getElementById(".").disabled = false;
+function enableDecimalsBtn() {
+  decimalsBtn.disabled = false
 }
 
-function disableDecimalBtn() {
-  document.getElementById(".").disabled = true;
+function disableDecimalsBtn() {
+  decimalsBtn.disabled = true
 }
 
-
-deleteBtn.addEventListener('click', backspaceDelete);
-clearBtn.addEventListener('click', clearDisplay);
-
-/*Put numbers in display and variables num1 and num2 when number buttons are clicked */
-numberBtns.forEach(btn => btn.addEventListener("click", event => {
-  putNumberInDisplay(btn.id);
-
-}
-))
-
-function add(num1, num2) {
-  return num1 + num2;
+/*What to do when a number is pressed*/
+function clearDisplayAndMemory() {
+  display.textContent = ""
+  num1 = ""
+  num2 = ""
+  operator = ""
 }
 
-function subtract(num1, num2) {
-  return num1 - num2;
-}
+decimalsBtn.addEventListener("click", disableDecimalsBtn)
 
-function multiply(num1, num2) {
-  return num1 * num2;
-}
-
-function divide(num1, num2) {
-  if (num2 === 0) { return skulls; }
-  else { return num1 / num2; }
-}
-
-function operate(num1, num2, operator) {
-  number1 = Number(num1);
-  number2 = Number(num2);
-  if (operator === '+') {
-    display.innerHTML = add(number1, number2);
-  } else if (operator === '-') {
-    display.innerHTML = subtract(number1, number2);
-  } else if (operator === '*') {
-    display.innerHTML = multiply(number1, number2);
+function onNumberPress(num) {
+  if (operator === "=") {
+    clearDisplayAndMemory()
+    num1 += num
+    display.textContent += num
+    enableOperatorBtns()
+  } else if (
+    operator === "+" ||
+    operator === "-" ||
+    operator === "*" ||
+    operator === "/"
+  ) {
+    num2 += num
+    display.textContent += num
+    enableOperatorBtns()
+    enableEqualsBtn()
+  } else {
+    num1 += num
+    display.textContent += num
+    enableOperatorBtns()
+    enableEqualsBtn()
   }
-  else if (operator === "/") {
-    display.innerHTML = divide(number1, number2);
-  }
-  num1 = number2;
-  num2 = "";
-  operator = "";
 }
-
-equalsBtn.addEventListener('click', () => {
-  operate(num1, num2, operator);
-  operator2 = "=";
-}
+numberBtns.forEach(btn =>
+  btn.addEventListener("click", event => {
+    onNumberPress(btn.id)
+  }),
 )
 
-operatorBtns.forEach(btn => btn.addEventListener("click", event => {
+/*What to do when the decimals button is pressed */
+/*What to do when an operator is pressed*/
+function onOperatorPress(op) {
   if (operator === "") {
-    operator = btn.id;
-    console.log(operator);
-    putOperatorInDisplay(btn.id);
-    disableOperatorBtns();
-    enableDecimalBtn();
-    disableEqualsBtn()
+    operator = op
+    display.textContent += ` ${op} `
+    disableOperatorBtns()
+  } else {
+    operate(num1, num2, operator)
+    display.textContent = result += ` ${op} `
+    num1 = result
+    num2 = ""
+    operator = op
+    console.log(num1, num2, operator)
   }
-  else {
-    operate(num1, num2, operator);
-    operator = btn.id;
+}
+operatorBtns.forEach(btn =>
+  btn.addEventListener("click", () => {
+    onOperatorPress(btn.id)
+  }),
+)
+
+/*What to do when equals is pressed */
+
+function onEqualsPress() {
+  operate(num1, num2, operator)
+  display.textContent = result
+  num1 = result
+  num2 = ""
+  operator = ""
+  disableEqualsBtn()
+  enableDecimalsBtn()
+}
+
+equalsBtn.addEventListener("click", () => {
+  onEqualsPress()
+})
+
+/*What to do when Backspace and Clear are pressed */
+
+clearBtn.addEventListener("click", clearDisplayAndMemory)
+backspaceBtn.addEventListener("click", backspace)
+
+function backspace() {
+  if (display.innerText.slice(-1) === " ") {
+    display.innerText = display.innerText.slice(0, -3)
+  } else {
+    display.innerText = display.innerText.slice(0, -1)
   }
-}))
+  let str = display.innerText.split(" ")
+  if (str.length === 0) {
+    num1 = ""
+    num2 = ""
+    operator = ""
+  } else if (str.length === 1) {
+    num1 = str[0]
+  } else if (str.length === 2) {
+    num1 = str[0]
+    operator = str[1]
+  } else {
+    num1 = str[0]
+    num2 = str[2]
+    operator = str[1]
+  }
 
-
-
-function backspaceDelete() {
-  let text = display.textContent.replace(' ', '').slice(0, -1);
-  console.log(text);
-  display.textContent = text;
-  if ((plusBtn.disabled = true)) {
-    enableOperatorBtns();
+  if (!str.includes(".")) {
+    enableDecimalsBtn()
   }
 }
 
-function clearDisplay() {
-  display.textContent = '';
-  num1 = '';
-  num2 = '';
-  operator = '';
-  operator2 = '';
-  disableOperatorBtns();
-  disableEqualsBtn();
-}
-
-
-document.onkeydown = pressKey;
-function pressKey(event) {
-  let keyBoardKey = event.key;
-  if (/[0-9.]/i.test(event.key)) {
-
-    if (operator2 === '=') {
-      clearDisplay();
-      putNumberInDisplay(keyBoardKey);
-      enableOperatorBtns();
-    } else {
-      putNumberInDisplay(keyBoardKey);
-      enableOperatorBtns();
-    }
-  }
-  else if (operatorsRegex.test(keyBoardKey)) {
-    putOperatorInDisplay(keyBoardKey);
-    disableOperatorBtns();
-    enableDecimalBtn();
-  }
-  else if (keyBoardKey === 'Enter') {
-    putOperatorInDisplay('=');
-    disableDecimalBtn();
-  } else if (keyBoardKey === 'Backspace' || keyBoardKey === 'Delete') {
-    backspaceDelete();
-  } else if (keyBoardKey === 'Control' || keyBoardKey === 'Super') {
-    clearDisplay();
-  }
+window.onload = () => {
+  disableEqualsBtn()
+  disableOperatorBtns()
 }

@@ -1,53 +1,50 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <meta name="description" content="Calculator">
+    <link rel="stylesheet" href="src/colors.css">
+    <link rel="stylesheet" href="src/comeau-reset.css">
+    <link rel="stylesheet" href="style.css">
+    <script
+      src="https://kit.fontawesome.com/67e8ad7c64.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculator</title>
-  <meta name="description" content="Calculator">
-  <link rel="stylesheet" href="src/colors.css">
-  <link rel="stylesheet" href="src/comeau-reset.css">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://kit.fontawesome.com/67e8ad7c64.js" crossorigin="anonymous"></script>
-</head>
+  <body>
+    <main>
+      <div class="calculator">
+        <div id="display" class="display"></div>
 
-<body>
-  <main>
-    <div class="calculator">
-      <div id="display" class="display">
-        <p></p>
+        <button id="clear">C</button>
+        <button id="del" class="del">
+          <i class="fa-solid fa-delete-left"></i>
+        </button>
+        <button id="/" class="operator">/</button>
+
+        <button id="7" class="number">7</button>
+        <button id="8" class="number">8</button>
+        <button id="9" class="number">9</button>
+        <button id="*" class="operator">*</button>
+
+        <button id="4" class="number">4</button>
+        <button id="5" class="number">5</button>
+        <button id="6" class="number">6</button>
+        <button id="-" class="operator">-</button>
+
+        <button id="1" class="number">1</button>
+        <button id="2" class="number">2</button>
+        <button id="3" class="number">3</button>
+        <button id="+" class="operator">+</button>
+
+        <button id="0" class="number">0</button>
+        <button id="." class="number decimal">.</button>
+        <button id="=" class="equals">=</button>
       </div>
-
-      <button id="clear">C</button>
-      <button id="del" class="del"><i class="fa-solid fa-delete-left"></i>
-      </button>
-      <button id="/" class="operator">/</button>
-
-      <button id="7" class="number">7</button>
-      <button id="8" class="number">8</button>
-      <button id="9" class="number">9</button>
-      <button id="*" class="operator">*</button>
-
-
-      <button id="4" class="number">4</button>
-      <button id="5" class="number">5</button>
-      <button id="6" class="number">6</button>
-      <button id="-" class="operator">-</button>
-
-      <button id="1" class="number">1</button>
-      <button id="2" class="number">2</button>
-      <button id="3" class="number">3</button>
-      <button id="+" class="operator">+</button>
-
-
-      <button id="0" class="number">0</button>
-      <button id="." class="number decimal">.</button>
-      <button id="=" class="equals">=</button>
-
-    </div>
-  </main>
-</body>
-<script src="script.js"></script>
-
+    </main>
+  </body>
+  <script src="script.js"></script>
 </html>
