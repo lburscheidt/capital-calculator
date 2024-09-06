@@ -5,23 +5,9 @@ let result = '';
 let operator2 = '';
 const regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/gmi;
 
-let oneBtn = document.getElementById('1');
-let twoBtn = document.getElementById('2');
-let threeBtn = document.getElementById('3');
-let fourBtn = document.getElementById('4');
-let fiveBtn = document.getElementById('5');
-let sixBtn = document.getElementById('6');
-let sevenBtn = document.getElementById('7');
-let eightBtn = document.getElementById('8');
-let nineBtn = document.getElementById('9');
-let zeroBtn = document.getElementById('zero');
-
-let plusBtn = document.getElementById('+');
-let minusBtn = document.getElementById('-');
-let divideBtn = document.getElementById('/');
-let multiplyBtn = document.getElementById('*');
-let equalsBtn = document.getElementById('=');
-
+const numberButtons = document.querySelectorAll(".number");
+const operatorButtons = document.querySelectorAll(".operator")
+const equalsBtn = document.querySelector(".equals")
 let clearBtn = document.getElementById('clear');
 let deleteBtn = document.getElementById('del');
 let decimalsBtn = document.getElementById('.');
@@ -92,131 +78,31 @@ function disableDecimal() {
 }
 
 document.onkeydown = pressKey;
+
 function pressKey(event) {
   let keyBoardKey = event.key;
+  if (/[0-9.]/i.test(event.key)) {
 
-  if (keyBoardKey === '1') {
     if (operator2 === '=') {
       clearDisplay();
-      putNumberInDisplay('1');
+      putNumberInDisplay(keyBoardKey);
       enableOperatorBtns();
     } else {
-      putNumberInDisplay('1');
+      putNumberInDisplay(keyBoardKey);
       enableOperatorBtns();
     }
-  } else if (keyBoardKey === '2') {
-    if (operator2 === '=') {
-      clearDisplay();
-      putNumberInDisplay('2');
-      enableOperatorBtns();
-    } else {
-      putNumberInDisplay('2');
-      enableOperatorBtns();
-    }
-  } else if (keyBoardKey === '3') {
-    if (operator2 === '=') {
-      clearDisplay();
-      putNumberInDisplay('3');
-      enableOperatorBtns();
-    } else {
-      putNumberInDisplay('3');
-      enableOperatorBtns();
-    }
-  } else if (keyBoardKey === '4') {
-    if (operator2 === '=') {
-      clearDisplay();
-      putNumberInDisplay('4');
-      enableOperatorBtns();
-    } else {
-      putNumberInDisplay('4');
-      enableOperatorBtns();
-    }
-  } else if (keyBoardKey === '5') {
-    if (operator2 === '=') {
-      clearDisplay();
-      putNumberInDisplay('5');
-      enableOperatorBtns();
-    } else {
-      putNumberInDisplay('5');
-      enableOperatorBtns();
-    }
-  } else if (keyBoardKey === '6') {
-    if (operator2 === '=') {
-      clearDisplay();
-      putNumberInDisplay('6');
-      enableOperatorBtns();
-    } else {
-      putNumberInDisplay('6');
-      enableOperatorBtns();
-    }
-  } else if (keyBoardKey === '7') {
-    if (operator2 === '=') {
-      clearDisplay();
-      putNumberInDisplay('7');
-      enableOperatorBtns();
-    } else {
-      putNumberInDisplay('7');
-      enableOperatorBtns();
-    }
-  } else if (keyBoardKey === '8') {
-    if (operator2 === '=') {
-      clearDisplay();
-      putNumberInDisplay('8');
-      enableOperatorBtns();
-    } else {
-      putNumberInDisplay('8');
-      enableOperatorBtns();
-    }
-  } else if (keyBoardKey === '9') {
-    if (operator2 === '=') {
-      clearDisplay();
-      putNumberInDisplay('9');
-      enableOperatorBtns();
-    } else {
-      putNumberInDisplay('9');
-      enableOperatorBtns();
-    }
-  } else if (keyBoardKey === '0') {
-    if (operator2 === '=') {
-      clearDisplay();
-      putNumberInDisplay('0');
-      enableOperatorBtns();
-    } else {
-      putNumberInDisplay('0');
-      enableOperatorBtns();
-    }
-  } else if (keyBoardKey === '.') {
-    if (operator2 === '=') {
-      clearDisplay();
-      putNumberInDisplay('.');
-      enableOperatorBtns();
-    } else {
-      putNumberInDisplay('.');
-      enableOperatorBtns();
-    }
-  } else if (keyBoardKey === '+') {
-    putOperatorInDisplay('+');
+  }
+
+  else if (/\+|\*|\/|\-/i.test(keyBoardKey)) {
+    putOperatorInDisplay(keyBoardKey);
     disableOperatorBtns();
     enableDecimal();
     saveVariables();
-  } else if (keyBoardKey === '-') {
-    putOperatorInDisplay('-');
-    disableOperatorBtns();
-    enableDecimal();
-    saveVariables();
-  } else if (keyBoardKey === '*') {
-    putOperatorInDisplay('*');
-    disableOperatorBtns();
-    enableDecimal();
-    saveVariables();
-  } else if (keyBoardKey === '/') {
-    putOperatorInDisplay('/');
-    disableOperatorBtns();
-    enableDecimal();
-    saveVariables();
-  } else if (keyBoardKey === 'Enter') {
+  }
+
+  else if (keyBoardKey === 'Enter') {
     putOperatorInDisplay('=');
-    /*disableDecimal();*/
+    disableDecimal();
     saveVariables();
   } else if (keyBoardKey === 'Backspace' || keyBoardKey === 'Delete') {
     backspaceDelete();
@@ -226,7 +112,7 @@ function pressKey(event) {
 }
 /* Add event listeners*/
 
-const numberButtons = document.querySelectorAll(".number");
+
 
 numberButtons.forEach(btn => btn.addEventListener("click", event => {
   if (operator2 === '=') {
@@ -240,8 +126,6 @@ numberButtons.forEach(btn => btn.addEventListener("click", event => {
 }
 ))
 
-const operatorButtons = document.querySelectorAll(".operator")
-
 operatorButtons.forEach(btn => btn.addEventListener("click", event => {
   putOperatorInDisplay(btn.id);
   disableOperatorBtns();
@@ -249,24 +133,8 @@ operatorButtons.forEach(btn => btn.addEventListener("click", event => {
   saveVariables();
 }))
 
-
-
-decimalsBtn.addEventListener('click', function () {
-  if (operator2 === '=') {
-    clearDisplay();
-    putNumberInDisplay('.');
-    enableOperatorBtns();
-  } else {
-    putNumberInDisplay('.');
-    enableOperatorBtns();
-  }
-});
-
-
-
 equalsBtn.addEventListener('click', function () {
-  putOperatorInDisplay('=');
-  /*disableDecimal();*/
+  putOperatorInDisplay(btn.id);
   saveVariables();
 });
 
