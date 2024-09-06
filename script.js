@@ -84,10 +84,10 @@ function pressKey(event) {
 
 numberBtns.forEach(btn => btn.addEventListener("click", event => {
   putNumberInDisplay(btn.id);
-  if (display.innerHTML.includes("+" | "*" | "-" | "/")) {
+  if (operator !== "") {
     num2 += btn.id;
-    console.log(num1, num2, operator)
-    enableEqualsBtn;
+    console.log(num1, num2, operator);
+    enableEqualsBtn();
   }
   else if (operator2 === '=') {
     clearDisplay();
@@ -138,16 +138,23 @@ function operate(num1, num2, operator) {
 
 equalsBtn.addEventListener('click', () => {
   operate(num1, num2, operator);
+  operator2 = "=";
 }
 )
 
 operatorBtns.forEach(btn => btn.addEventListener("click", event => {
-  operator = btn.id;
-  console.log(operator);
-  putOperatorInDisplay(btn.id);
-  disableOperatorBtns();
-  enableDecimalBtn();
-  disableEqualsBtn();
+  if (operator === "") {
+    operator = btn.id;
+    console.log(operator);
+    putOperatorInDisplay(btn.id);
+    disableOperatorBtns();
+    enableDecimalBtn();
+    disableEqualsBtn()
+  }
+  else {
+    operate(num1, num2, operator);
+    operator = btn.id;
+  }
 }))
 
 deleteBtn.addEventListener('click', backspaceDelete);
