@@ -168,9 +168,12 @@ function backspace() {
     operator = ""
   } else if (str.length === 1) {
     num1 = str[0]
+    num2 = ""
+    operator = ""
   } else if (str.length === 2) {
     num1 = str[0]
     operator = str[1]
+    num2 = ""
   } else {
     num1 = str[0]
     num2 = str[2]
@@ -179,6 +182,26 @@ function backspace() {
 
   if (!str.includes(".")) {
     enableDecimalsBtn()
+  }
+}
+
+/*keyboard support */
+document.onkeydown = pressKey
+function pressKey(event) {
+  let keyBoardKey = event.key
+  if (/[0-9.]/i.test(keyBoardKey)) {
+    onNumberPress(keyBoardKey)
+    /*what to do when a number is pressed*/
+  } else if (/\+|\*|\/|\-/i.test(keyBoardKey)) {
+    /*what to do when an operator is pressed*/
+    onOperatorPress(keyBoardKey)
+  } else if (keyBoardKey === "=" || keyBoardKey === "Enter") {
+    onEqualsPress()
+  } else if (keyBoardKey === "Backspace" || keyBoardKey === "Delete") {
+    backspace()
+  } else if (keyBoardKey === "Control" || keyBoardKey === "Super") {
+    /*what to do when Ctrl or Super are pressed */
+    clearDisplayAndMemory()
   }
 }
 
