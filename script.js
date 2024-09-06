@@ -240,6 +240,17 @@ numberButtons.forEach(btn => btn.addEventListener("click", event => {
 }
 ))
 
+const operatorButtons = document.querySelectorAll(".operator")
+
+operatorButtons.forEach(btn => btn.addEventListener("click", event => {
+  putOperatorInDisplay(btn.id);
+  disableOperatorBtns();
+  enableDecimal();
+  saveVariables();
+}))
+
+
+
 decimalsBtn.addEventListener('click', function () {
   if (operator2 === '=') {
     clearDisplay();
@@ -251,32 +262,7 @@ decimalsBtn.addEventListener('click', function () {
   }
 });
 
-/*event listeners: operations*/
-plusBtn.addEventListener('click', function () {
-  putOperatorInDisplay('+');
-  disableOperatorBtns();
-  enableDecimal();
-  saveVariables();
-});
 
-minusBtn.addEventListener('click', function () {
-  putOperatorInDisplay('-');
-  disableOperatorBtns();
-  enableDecimal();
-  saveVariables();
-});
-divideBtn.addEventListener('click', function () {
-  putOperatorInDisplay('/');
-  disableOperatorBtns();
-  enableDecimal();
-  saveVariables();
-});
-multiplyBtn.addEventListener('click', function () {
-  putOperatorInDisplay('*');
-  disableOperatorBtns();
-  enableDecimal();
-  saveVariables();
-});
 
 equalsBtn.addEventListener('click', function () {
   putOperatorInDisplay('=');
