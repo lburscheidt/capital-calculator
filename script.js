@@ -7,7 +7,7 @@ const regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/gmi;
 const operatorsRegex = /\+|\*|\/|\-/i;
 const numberBtns = document.querySelectorAll(".number");
 const operatorBtns = document.querySelectorAll(".operator")
-const equalsBtn = document.querySelector(".equals");
+const equalsBtn = document.getElementById("=");
 const clearBtn = document.getElementById('clear');
 const deleteBtn = document.getElementById('del');
 const decimalsBtn = document.getElementById(".")
@@ -16,66 +16,40 @@ const skulls = "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></
 disableOperatorBtns();
 disableEqualsBtn();
 
-function add(num1, num2) {
-  return num1 + num2;
-}
-
-function subtract(num1, num2) {
-  return parseFloat((num1 - num2).toFixed(6));
-}
-
-function multiply(num1, num2) {
-  return parseFloat((num1 * num2).toFixed(6));
-}
-
-function divide(num1, num2) {
-  if (num2 === 0) {
-    return
-    "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>";
-  } else {
-    return parseFloat((num1 / num2).toFixed(6));
-
-  }
-}
-
 function putNumberInDisplay(num) {
   display.textContent += num;
-  if (display.innerHTML.match(regex)) {
-     enableEqualsBtn();
-  }
 }
 
 function putOperatorInDisplay(op) {
   display.textContent += ' ' + op + ' ';
-  disableOperatorBtns();
 }
 
 function disableOperatorBtns() {
-  document.querySelectorAll('button.operator').forEach(btn => {
+  operatorBtns.forEach(btn => {
     btn.disabled = true;
   });
 }
 
 function enableOperatorBtns() {
-  document.querySelectorAll('button.operator').forEach(btn => {
+  operatorBtns.forEach(btn => {
     btn.disabled = false;
   });
 }
 
 function enableEqualsBtn() {
-  document.getElementById('.equals').disabled = false;
+  document.getElementById("=").disabled = false;
 }
 
 function disableEqualsBtn() {
-  document.getElementById('.equals').disabled = true;
+  document.getElementById("=").disabled = true;
 }
 
 function enableDecimalBtn() {
-  document.getElementById('.').disabled = false;
+  decimalsBtn.disabled = false;
 }
 
 function disableDecimalBtn() {
-  document.querySelector('.').disabled = true;
+  decimalsBtn.disabled = true;
 }
 
 document.onkeydown = pressKey;
@@ -93,18 +67,14 @@ function pressKey(event) {
       enableOperatorBtns();
     }
   }
-
   else if (operatorsRegex.test(keyBoardKey)) {
     putOperatorInDisplay(keyBoardKey);
     disableOperatorBtns();
     enableDecimalBtn();
-    saveVariables();
   }
-
   else if (keyBoardKey === 'Enter') {
     putOperatorInDisplay('=');
     disableDecimalBtn();
-    saveVariables();
   } else if (keyBoardKey === 'Backspace' || keyBoardKey === 'Delete') {
     backspaceDelete();
   } else if (keyBoardKey === 'Control' || keyBoardKey === 'Super') {
@@ -114,25 +84,21 @@ function pressKey(event) {
 
 numberBtns.forEach(btn => btn.addEventListener("click", event => {
   putNumberInDisplay(btn.id);
-  if (operatorsRegex.test(display.textContent)) {
+  if (display.innerHTML.includes("+" | "*" | "-" | "/")) {
     num2 += btn.id;
-    console.log(num2);
-    enableOperatorBtns();
+    console.log(num1, num2, operator)
+    enableEqualsBtn;
   }
   else if (operator2 === '=') {
     clearDisplay();
     putNumberInDisplay(btn.id);
     num1 += btn.id;
-    console.log(num1);
-     enableOperatorBtns();
   }
   else {
     num1 += btn.id;
-    console.log(num1);
   }
   enableOperatorBtns();
 }
-
 ))
 
 function add(num1, num2) {
@@ -147,7 +113,7 @@ function multiply(num1, num2) {
   return num1 * num2;
 }
 
-function divide(nuum1, num2) {
+function divide(num1, num2) {
   if (num2 === 0) { return skulls; }
   else { return num1 / num2; }
 }
@@ -156,14 +122,14 @@ function operate(num1, num2, operator) {
   number1 = Number(num1);
   number2 = Number(num2);
   if (operator === '+') {
-    display.innerHTML = add(number1, number2)
+    display.innerHTML = add(number1, number2);
   } else if (operator === '-') {
-    display.innerHTML = subtract(number1, number2)
+    display.innerHTML = subtract(number1, number2);
   } else if (operator === '*') {
-    display.innerHTML = multiply(number1, number2)
+    display.innerHTML = multiply(number1, number2);
   }
   else if (operator === "/") {
-    display.innerHTML = divide(number1, number2)
+    display.innerHTML = divide(number1, number2);
   }
   num1 = number2;
   num2 = "";
@@ -181,7 +147,7 @@ operatorBtns.forEach(btn => btn.addEventListener("click", event => {
   putOperatorInDisplay(btn.id);
   disableOperatorBtns();
   enableDecimalBtn();
-
+  disableEqualsBtn();
 }))
 
 deleteBtn.addEventListener('click', backspaceDelete);
