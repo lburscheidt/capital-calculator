@@ -6,11 +6,11 @@ let operator2 = '';
 const regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/gmi;
 const operatorsRegex = /\+|\*|\/|\-/i;
 const numberBtns = document.querySelectorAll(".number");
-const operatorBtns = document.querySelectorAll(".operator")
+const operatorBtns = document.querySelectorAll(".operator");
 const equalsBtn = document.getElementById("=");
 const clearBtn = document.getElementById('clear');
 const deleteBtn = document.getElementById('del');
-const decimalsBtn = document.getElementById(".")
+const decimalsBtn = document.getElementById(".");
 const skulls = "<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>";
 
 disableOperatorBtns();
@@ -18,6 +18,12 @@ disableEqualsBtn();
 
 function putNumberInDisplay(num) {
   display.textContent += num;
+  if (operatorsRegex.test(display.textContent)) {
+    num2 += num;
+    enableEqualsBtn();
+  }
+  else { num1 += num }
+  enableOperatorBtns()
 }
 
 function putOperatorInDisplay(op) {
@@ -45,59 +51,21 @@ function disableEqualsBtn() {
 }
 
 function enableDecimalBtn() {
-  decimalsBtn.disabled = false;
+  document.getElementById(".").disabled = false;
 }
 
 function disableDecimalBtn() {
-  decimalsBtn.disabled = true;
+  document.getElementById(".").disabled = true;
 }
 
-document.onkeydown = pressKey;
 
-function pressKey(event) {
-  let keyBoardKey = event.key;
-  if (/[0-9.]/i.test(event.key)) {
+deleteBtn.addEventListener('click', backspaceDelete);
+clearBtn.addEventListener('click', clearDisplay);
 
-    if (operator2 === '=') {
-      clearDisplay();
-      putNumberInDisplay(keyBoardKey);
-      enableOperatorBtns();
-    } else {
-      putNumberInDisplay(keyBoardKey);
-      enableOperatorBtns();
-    }
-  }
-  else if (operatorsRegex.test(keyBoardKey)) {
-    putOperatorInDisplay(keyBoardKey);
-    disableOperatorBtns();
-    enableDecimalBtn();
-  }
-  else if (keyBoardKey === 'Enter') {
-    putOperatorInDisplay('=');
-    disableDecimalBtn();
-  } else if (keyBoardKey === 'Backspace' || keyBoardKey === 'Delete') {
-    backspaceDelete();
-  } else if (keyBoardKey === 'Control' || keyBoardKey === 'Super') {
-    clearDisplay();
-  }
-}
-
+/*Put numbers in display and variables num1 and num2 when number buttons are clicked */
 numberBtns.forEach(btn => btn.addEventListener("click", event => {
   putNumberInDisplay(btn.id);
-  if (operator !== "") {
-    num2 += btn.id;
-    console.log(num1, num2, operator);
-    enableEqualsBtn();
-  }
-  else if (operator2 === '=') {
-    clearDisplay();
-    putNumberInDisplay(btn.id);
-    num1 += btn.id;
-  }
-  else {
-    num1 += btn.id;
-  }
-  enableOperatorBtns();
+
 }
 ))
 
@@ -157,8 +125,7 @@ operatorBtns.forEach(btn => btn.addEventListener("click", event => {
   }
 }))
 
-deleteBtn.addEventListener('click', backspaceDelete);
-clearBtn.addEventListener('click', clearDisplay);
+
 
 function backspaceDelete() {
   let text = display.textContent.replace(' ', '').slice(0, -1);
@@ -180,4 +147,31 @@ function clearDisplay() {
 }
 
 
+document.onkeydown = pressKey;
+function pressKey(event) {
+  let keyBoardKey = event.key;
+  if (/[0-9.]/i.test(event.key)) {
 
+    if (operator2 === '=') {
+      clearDisplay();
+      putNumberInDisplay(keyBoardKey);
+      enableOperatorBtns();
+    } else {
+      putNumberInDisplay(keyBoardKey);
+      enableOperatorBtns();
+    }
+  }
+  else if (operatorsRegex.test(keyBoardKey)) {
+    putOperatorInDisplay(keyBoardKey);
+    disableOperatorBtns();
+    enableDecimalBtn();
+  }
+  else if (keyBoardKey === 'Enter') {
+    putOperatorInDisplay('=');
+    disableDecimalBtn();
+  } else if (keyBoardKey === 'Backspace' || keyBoardKey === 'Delete') {
+    backspaceDelete();
+  } else if (keyBoardKey === 'Control' || keyBoardKey === 'Super') {
+    clearDisplay();
+  }
+}
