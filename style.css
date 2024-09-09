@@ -1,61 +1,118 @@
-:root {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
 
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+#root,
+#__next {
+	isolation: isolate;
+}
+/*reset ends*/
+
+:root {
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	--celtic: #193324;
+	--cruise: #c7efe2;
+	--ocean-green: #34a37e;
+	--vista-blue: #92d9bb;
 }
 
 html {
-  background-color: var(--mint-80)
+	background-color: var(--celtic);
 }
 
 body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 main {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .calculator {
-  display: grid;
-  grid-template-columns: repeat(4, 80px);
-  grid-template-rows: repeat (6, 80px);
-  gap: 10px;
-  align-items: center;
-  font-size: 3.5rem;
-  flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(4, 80px);
+	grid-template-rows: repeat (6, 80px);
+	gap: 10px;
+	align-items: center;
+	font-size: 3.5rem;
+	flex-wrap: wrap;
 }
 
 .display {
-  font-size: 4rem;
-  text-align: center;
-  grid-column-start: 1;
-  grid-column-end: 5;
-  max-width: 400px;
-  /*width: 350px;*/
-  height: 80px;
-  background-color: var(--mint-10);
-  border: 1px solid var(--mint-80);
-  border-radius: 5px;
-  justify-content: center;
-  align-items: center;
+	font-size: 4rem;
+	text-align: center;
+	grid-column-start: 1;
+	grid-column-end: 5;
+	max-width: 400px;
+	/*width: 350px;*/
+	height: 80px;
+	background-color: var(--cruise);
+	border: 1px solid var(--celtic);
+	border-radius: 5px;
+	justify-content: center;
+	align-items: center;
 }
 
 button {
-  width: 80px;
-  height: 80px;
-  border: none;
-  border-radius: 5px;
-  color: #000;
-  text-align: center;
-  font-weight: 700;
+	width: 80px;
+	height: 80px;
+	border: none;
+	border-radius: 5px;
+	color: #000;
+	text-align: center;
+	font-weight: 700;
 }
 
 .number {
-  background-color: var(--mint-40);
+	background-color: var(--ocean-green);
 }
 
 .operator,
@@ -63,23 +120,22 @@ button {
 .decimal,
 .equals,
 #clear {
-  background-color: var(--mint-20);
+	background-color: var(--vista-blue);
 }
 
 #del {
-  grid-column-start: 2;
-  grid-column-end: 4;
-  width: 170px;
+	grid-column-start: 2;
+	grid-column-end: 4;
+	width: 170px;
 }
 
 #\30 {
-  width: 170px;
-  grid-column-start: 1;
-  grid-column-end: 3;
+	width: 170px;
+	grid-column-start: 1;
+	grid-column-end: 3;
 }
 
-
 button:disabled {
-  background-color: var(--mint-10);
-  color: #fff;
+	background-color: var(--cruise);
+	color: #fff;
 }
