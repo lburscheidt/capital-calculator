@@ -1,4 +1,4 @@
-# calculator
+# Capital Calculator
 
 A javascript calculator made for The Odin Project.
 
