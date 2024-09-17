@@ -15,20 +15,22 @@ const skulls =
 	"<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>";
 
 function add(num1, num2) {
-	result = Number(num1) + Number(num2);
+	result = (parseFloat(num1) + parseFloat(num2)).toFixed(6);
 }
 function subtract(num1, num2) {
-	result = Number(num1) - Number(num2);
+	result = (parseFloat(num1) - parseFloat(num2)).toFixed(6);
 }
 function multiply(num1, num2) {
-	result = Number(num1) * Number(num2);
+	result = (parseFloat(num1) * parseFloat(num2)).toFixed(6);
 }
 function divide(num1, num2) {
-	if (num2 === 0) {
-		return skulls;
+	if (Number(num2) === 0) {
+		result = skulls;
 	} else {
-		result = Number(num1) / Number(num2);
+		result = (parseFloat(num1) / parseFloat(num2)).toFixed(6);
 	}
+
+	console.log(result);
 }
 
 function operate(num1, num2, operator) {
@@ -71,7 +73,7 @@ function disableDecimalsBtn() {
 	decimalsBtn.disabled = true;
 }
 function clearDisplayAndMemory() {
-	display.textContent = "";
+	display.innerHTML = "";
 	num1 = "";
 	num2 = "";
 	operator = "";
@@ -83,7 +85,7 @@ function onNumberPress(num) {
 	if (operator === "=") {
 		clearDisplayAndMemory();
 		num1 += num;
-		display.textContent += num;
+		display.innerHTML += num;
 		enableOperatorBtns();
 	} else if (
 		operator === "+" ||
@@ -92,12 +94,12 @@ function onNumberPress(num) {
 		operator === "/"
 	) {
 		num2 += num;
-		display.textContent += num;
+		display.innerHTML += num;
 		enableOperatorBtns();
 		enableEqualsBtn();
 	} else {
 		num1 += num;
-		display.textContent += num;
+		display.innerHTML += num;
 		enableOperatorBtns();
 		enableEqualsBtn();
 	}
@@ -111,11 +113,11 @@ numberBtns.forEach(btn =>
 function onOperatorPress(op) {
 	if (operator === "") {
 		operator = op;
-		display.textContent += ` ${op} `;
+		display.innerHTML += ` ${op} `;
 		disableOperatorBtns();
 	} else {
 		operate(num1, num2, operator);
-		display.textContent = result += ` ${op} `;
+		display.innerHTML = result += ` ${op} `;
 		num1 = result;
 		num2 = "";
 		operator = op;
@@ -130,7 +132,7 @@ operatorBtns.forEach(btn =>
 
 function onEqualsPress() {
 	operate(num1, num2, operator);
-	display.textContent = result;
+	display.innerHTML = result;
 	num1 = result;
 	num2 = "";
 	operator = "";

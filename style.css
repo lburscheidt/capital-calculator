@@ -88,6 +88,9 @@ main {
 
 .display {
 	font-size: 4rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	text-align: center;
 	grid-column-start: 1;
 	grid-column-end: 5;
