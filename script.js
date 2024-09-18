@@ -13,6 +13,7 @@ const backspaceBtn = document.getElementById("del");
 const decimalsBtn = document.getElementById(".");
 const skulls =
 	"<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>";
+let operatorsRegex = /(\+)|(\-)|(\*)|(\/)/gim;
 
 function add(num1, num2) {
 	result = Number.parseFloat((num1 + num2).toFixed(2));
