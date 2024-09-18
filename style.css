@@ -61,6 +61,7 @@ h6 {
 }
 
 html {
+	background-color: var(--mint-80);
 	background-color: var(--celtic);
 }
 
@@ -69,9 +70,15 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 main {
+	display: flex;
+	justify-content: center;
 	display: flex;
 	justify-content: center;
 }
@@ -84,26 +91,40 @@ main {
 	align-items: center;
 	font-size: 3.5rem;
 	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(4, 80px);
+	grid-template-rows: repeat (6, 80px);
+	gap: 10px;
+	align-items: center;
+	font-size: 3.5rem;
+	flex-wrap: wrap;
 }
 
 .display {
 	font-size: 4rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	text-align: center;
 	grid-column-start: 1;
 	grid-column-end: 5;
+	max-width: 400px;
+	/*width: 350px;*/
 	height: 80px;
-	max-height: 200px;
+	background-color: var(--mint-10);
+	border: 1px solid var(--mint-80);
+	border-radius: 5px;
+	justify-content: center;
+	align-items: center;
+	font-size: 4rem;
+	text-align: center;
+	grid-column-start: 1;
+	grid-column-end: 5;
+	max-width: 400px;
+	/*width: 350px;*/
+	height: 80px;
 	background-color: var(--cruise);
 	border: 1px solid var(--celtic);
 	border-radius: 5px;
 	justify-content: center;
 	align-items: center;
-}
-
-.display:empty {
-	height: 80px;
 }
 
 button {
@@ -114,9 +135,17 @@ button {
 	color: #000;
 	text-align: center;
 	font-weight: 700;
+	width: 80px;
+	height: 80px;
+	border: none;
+	border-radius: 5px;
+	color: #000;
+	text-align: center;
+	font-weight: 700;
 }
 
 .number {
+	background-color: var(--mint-40);
 	background-color: var(--ocean-green);
 }
 
@@ -125,10 +154,14 @@ button {
 .decimal,
 .equals,
 #clear {
+	background-color: var(--mint-20);
 	background-color: var(--vista-blue);
 }
 
 #del {
+	grid-column-start: 2;
+	grid-column-end: 4;
+	width: 170px;
 	grid-column-start: 2;
 	grid-column-end: 4;
 	width: 170px;
@@ -138,9 +171,15 @@ button {
 	width: 170px;
 	grid-column-start: 1;
 	grid-column-end: 3;
+	width: 170px;
+	grid-column-start: 1;
+	grid-column-end: 3;
 }
 
 button:disabled {
+	background-color: var(--mint-10);
+	color: #fff;
+
 	background-color: var(--cruise);
 	color: #fff;
 }

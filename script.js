@@ -4,7 +4,7 @@ let operator = "";
 let result = "";
 let operator2 = "";
 const regex = /^([0-9]+)(.?)([0-9]?)( )(\+|\-|\*|\/)( )([0-9]+)(.?)([0-9]?)/gim;
-const operatorsRegex = /\+|\*|\/|\-/i;
+const operatorsRegex = /(\+)|(\-)|(\*)|(\/)/gim;
 const numberBtns = document.querySelectorAll(".number");
 const operatorBtns = document.querySelectorAll(".operator");
 const equalsBtn = document.getElementById("=");
@@ -13,7 +13,6 @@ const backspaceBtn = document.getElementById("del");
 const decimalsBtn = document.getElementById(".");
 const skulls =
 	"<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>";
-let operatorsRegex = /(\+)|(\-)|(\*)|(\/)/gim;
 
 function add(num1, num2) {
 	result = Number.parseFloat((num1 + num2).toFixed(2));
@@ -22,7 +21,7 @@ function subtract(num1, num2) {
 	result = Number.parseFloat((num1 - num2).toFixed(2));
 }
 function multiply(num1, num2) {
-	Number.parseFloat((num1 * num2).toFixed(2));
+	result = Number.parseFloat((num1 * num2).toFixed(2));
 }
 function divide(num1, num2) {
 	if (num2.toFixed(0) === 0) {
