@@ -108,7 +108,7 @@ function onNumberPress(num) {
 numberBtns.forEach(btn =>
 	btn.addEventListener("click", event => {
 		onNumberPress(btn.id);
-	})
+	}),
 );
 
 function onOperatorPress(op) {
@@ -128,7 +128,7 @@ function onOperatorPress(op) {
 operatorBtns.forEach(btn =>
 	btn.addEventListener("click", () => {
 		onOperatorPress(btn.id);
-	})
+	}),
 );
 
 function onEqualsPress() {
