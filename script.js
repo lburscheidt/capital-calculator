@@ -15,31 +15,31 @@ const skulls =
 	"<i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i><i class='fa-solid fa-skull'></i>";
 
 function add(num1, num2) {
-	result = Number(num1) + Number(num2);
+	result = Number.parseFloat((num1 + num2).toFixed(2));
 }
 function subtract(num1, num2) {
-	result = Number(num1) - Number(num2);
+	result = Number.parseFloat((num1 - num2).toFixed(2));
 }
 function multiply(num1, num2) {
-	result = Number(num1) * Number(num2);
+	Number.parseFloat((num1 * num2).toFixed(2));
 }
 function divide(num1, num2) {
-	if (Number(num2) === 0) {
+	if (num2.toFixed(0) === 0) {
 		result = skulls;
 	} else {
-		result = Number(num1) / Number(num2);
+		Number.parseFloat((num1 / num2).toFixed(2));
 	}
 }
 
 function operate(num1, num2, operator) {
 	if (operator === "+") {
-		add(num1, num2);
+		add(Number.parseFloat(num1), Number.parseFloat(num2));
 	} else if (operator === "-") {
-		subtract(num1, num2);
+		subtract(Number.parseFloat(num1), Number.parseFloat(num2));
 	} else if (operator === "*") {
-		multiply(num1, num2);
+		multiply(Number.parseFloat(num1), Number.parseFloat(num2));
 	} else if (operator === "/") {
-		divide(num1, num2);
+		divide(Number.parseFloat(num1), Number.parseFloat(num2));
 	}
 }
 
@@ -71,7 +71,7 @@ function disableDecimalsBtn() {
 	decimalsBtn.disabled = true;
 }
 function clearDisplayAndMemory() {
-	display.textContent = "";
+	display.innerHTML = "";
 	num1 = "";
 	num2 = "";
 	operator = "";
@@ -111,15 +111,15 @@ numberBtns.forEach(btn =>
 function onOperatorPress(op) {
 	if (operator === "") {
 		operator = op;
-		display.textContent += ` ${op} `;
+		display.innerHTML += ` ${op} `;
 		disableOperatorBtns();
+		enableDecimalsBtn();
 	} else {
 		operate(num1, num2, operator);
 		display.innerHTML = result += ` ${op} `;
 		num1 = result;
 		num2 = "";
 		operator = op;
-		console.log(num1, num2, operator);
 	}
 }
 operatorBtns.forEach(btn =>
@@ -133,7 +133,7 @@ function onEqualsPress() {
 	display.innerHTML = result;
 	num1 = result;
 	num2 = "";
-	operator = "";
+	operator = "=";
 	disableEqualsBtn();
 	enableDecimalsBtn();
 }
@@ -151,7 +151,9 @@ function backspace() {
 	} else {
 		display.innerText = display.innerText.slice(0, -1);
 	}
-	let str = display.innerText.split(" ");
+	let str = display.innerText.split(" ").toString();
+	console.log(str);
+	console.log(!str.includes("."));
 	if (str.length === 0) {
 		num1 = "";
 		num2 = "";

@@ -88,17 +88,22 @@ main {
 
 .display {
 	font-size: 4rem;
-	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	grid-column-start: 1;
 	grid-column-end: 5;
-	max-width: 400px;
-	/*width: 350px;*/
 	height: 80px;
+	max-height: 200px;
 	background-color: var(--cruise);
 	border: 1px solid var(--celtic);
 	border-radius: 5px;
 	justify-content: center;
 	align-items: center;
+}
+
+.display:empty {
+	height: 80px;
 }
 
 button {
