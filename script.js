@@ -17,17 +17,20 @@ const skulls =
 function add(num1, num2) {
 	result = Number.parseFloat((num1 + num2).toFixed(2));
 }
+
 function subtract(num1, num2) {
 	result = Number.parseFloat((num1 - num2).toFixed(2));
 }
+
 function multiply(num1, num2) {
 	result = Number.parseFloat((num1 * num2).toFixed(2));
 }
+
 function divide(num1, num2) {
-	if (num2.toFixed(0) === 0) {
+	if (num2 === 0) {
 		result = skulls;
 	} else {
-		Number.parseFloat((num1 / num2).toFixed(2));
+		result = Number.parseFloat((num1 / num2).toFixed(2));
 	}
 }
 
@@ -70,13 +73,13 @@ function enableDecimalsBtn() {
 function disableDecimalsBtn() {
 	decimalsBtn.disabled = true;
 }
+
 function clearDisplayAndMemory() {
 	display.innerHTML = "";
 	num1 = "";
 	num2 = "";
 	operator = "";
 }
-
 decimalsBtn.addEventListener("click", disableDecimalsBtn);
 
 function onNumberPress(num) {
@@ -137,11 +140,9 @@ function onEqualsPress() {
 	disableEqualsBtn();
 	enableDecimalsBtn();
 }
-
 equalsBtn.addEventListener("click", () => {
 	onEqualsPress();
 });
-
 clearBtn.addEventListener("click", clearDisplayAndMemory);
 backspaceBtn.addEventListener("click", backspace);
 
@@ -171,13 +172,12 @@ function backspace() {
 		num2 = str[2];
 		operator = str[1];
 	}
-
 	if (!str.includes(".")) {
 		enableDecimalsBtn();
 	}
 }
-
 document.onkeydown = pressKey;
+
 function pressKey(event) {
 	let keyBoardKey = event.key;
 	if (/[0-9.]/i.test(keyBoardKey)) {
@@ -192,7 +192,6 @@ function pressKey(event) {
 		clearDisplayAndMemory();
 	}
 }
-
 window.onload = () => {
 	disableEqualsBtn();
 	disableOperatorBtns();
